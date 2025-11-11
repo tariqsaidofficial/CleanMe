@@ -13,7 +13,7 @@
 [![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey.svg?style=flat-square)](https://www.apple.com/macos/)
 [![Architecture](https://img.shields.io/badge/Architecture-Apple%20Silicon%20%7C%20Intel-red.svg?style=flat-square)](https://www.apple.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme/badge)](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e49b6037664694b896d417139502bc492fcaf345)](https://app.codacy.com/organizations/gh/tariqsaidofficial/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/da7263e82a2e4677b5169b2567f560d3)](https://app.codacy.com/gh/tariqsaidofficial/CleanMe/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Privacy First](https://img.shields.io/badge/Privacy-First-blueviolet.svg?style=flat-square)](https://www.apple.com/privacy/)
 
 <img src="Sources/CleanME/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png" alt="CleanME App Icon" width="200" height="200"/>
