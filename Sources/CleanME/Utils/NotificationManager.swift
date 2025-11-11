@@ -4,11 +4,26 @@ import UserNotifications
 class NotificationManager {
     static let shared = NotificationManager()
     
+    // Check if we're running in a test environment
+    private var isTestEnvironment: Bool {
+        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil ||
+               NSClassFromString("XCTest") != nil
+    }
+    
     private init() {
-        requestAuthorization()
+        // Only request authorization if not in test environment
+        if !isTestEnvironment {
+            requestAuthorization()
+        }
     }
     
     func requestAuthorization() {
+        // Skip in test environment
+        guard !isTestEnvironment else {
+            print("⚠️ Skipping notification authorization in test environment")
+            return
+        }
+        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if granted {
                 print("Notification permission granted")
@@ -19,6 +34,12 @@ class NotificationManager {
     }
     
     func sendNotification(title: String, body: String) {
+        // Skip in test environment
+        guard !isTestEnvironment else {
+            print("📱 [Test] Notification: \(title) - \(body)")
+            return
+        }
+        
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
