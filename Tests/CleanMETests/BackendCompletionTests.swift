@@ -71,18 +71,17 @@ final class BackendCompletionTests: XCTestCase {
     func testFullScanIntegration() async throws {
         print("✅ Testing: Full scan integration")
         
-        let expectation = self.expectation(description: "Full scan completes")
         var progressUpdates: [(Double, String)] = []
+        var scanCompleted = false
         
         await scanEngine.performFullScan(selectedTypes: ["Cache Files", "Log Files", "Temporary Files"]) { progress, message in
             progressUpdates.append((progress, message))
             if progress >= 1.0 {
-                expectation.fulfill()
+                scanCompleted = true
             }
         }
         
-        await fulfillment(of: [expectation], timeout: 60.0)
-        
+        XCTAssertTrue(scanCompleted, "Scan should complete")
         XCTAssertGreaterThan(progressUpdates.count, 0, "Should have progress updates")
         XCTAssertEqual(progressUpdates.last?.0 ?? 0.0, 1.0, accuracy: 0.01, "Should reach 100%")
         XCTAssertFalse(scanEngine.isScanning, "Should not be scanning after completion")
@@ -119,7 +118,7 @@ final class BackendCompletionTests: XCTestCase {
     
     func testSafeDeletionCapabilities() {
         print("✅ Testing: Safe deletion capabilities")
-        let testItem = CleanupItem(
+        let _ = CleanupItem(
             fileName: "test.tmp",
             filePath: "/tmp/test.tmp",
             fileSize: 1024,
