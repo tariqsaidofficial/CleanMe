@@ -1,29 +1,32 @@
 import SwiftUI
 
 @main
-struct CleanMEApp: App {
+struct MacApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var themeManager = ThemeManager.shared
     @StateObject private var appSettings = AppSettings()
     
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Main Window") {
             ContentView()
+                .environmentObject(themeManager)
                 .environmentObject(appSettings)
-                .frame(minWidth: 900, minHeight: 600)
                 .onAppear {
                     setupLogging()
                 }
         }
-        .windowStyle(.hiddenTitleBar)
+        .windowStyle(.titleBar)
+        .windowToolbarStyle(.unifiedCompact)
+        .defaultSize(width: 1200, height: 800)
         .commands {
             CommandGroup(replacing: .newItem, addition: { })
             SidebarCommands()
-            ToolbarCommands()
         }
         
         Settings {
             SettingsView()
                 .environmentObject(appSettings)
+                .environmentObject(themeManager)
                 .frame(minWidth: 600, minHeight: 400)
         }
     }

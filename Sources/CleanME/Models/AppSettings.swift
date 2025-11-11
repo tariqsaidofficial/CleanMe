@@ -21,6 +21,11 @@ class AppSettings: ObservableObject {
     @Published var showFilePreview: Bool = true
     @Published var autoRefreshResults: Bool = true
     @Published var confirmBeforeDelete: Bool = true
+    @Published var enableHapticFeedback: Bool = true {
+        didSet {
+            FeedbackManager.shared.isEnabled = enableHapticFeedback
+        }
+    }
     
     // Logging
     @Published var enableLogging: Bool = true
@@ -77,6 +82,7 @@ class AppSettings: ObservableObject {
         showFilePreview = true
         autoRefreshResults = true
         confirmBeforeDelete = true
+        enableHapticFeedback = true
         enableLogging = true
         logLevel = .info
     }
