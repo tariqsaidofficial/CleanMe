@@ -1,0 +1,39 @@
+# Build artifacts
+.build/
+*.app/
+*.dSYM/
+
+# Swift Package Manager
+.swiftpm/
+*.xcodeproj/
+xcuserdata/
+.DS_Store
+
+# Xcode
+*.xcworkspace/
+*.xcuserstate
+
+# Temporary files
+*.swp
+*.swo
+*~
+.*.swp
+
+# Test outputs
+test_output.txt
+
+# Generated images (keep originals only)
+CleanMe.png
+CleanMe_icon-*.png
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
