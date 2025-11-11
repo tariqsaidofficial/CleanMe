@@ -74,7 +74,7 @@ final class BackendCompletionTests: XCTestCase {
         let expectation = self.expectation(description: "Full scan completes")
         var progressUpdates: [(Double, String)] = []
         
-        await scanEngine.performFullScan { progress, message in
+        await scanEngine.performFullScan(selectedTypes: ["Cache Files", "Log Files", "Temporary Files"]) { progress, message in
             progressUpdates.append((progress, message))
             if progress >= 1.0 {
                 expectation.fulfill()
@@ -114,17 +114,16 @@ final class BackendCompletionTests: XCTestCase {
         XCTAssertNotNil(error.errorDescription)
         print("  ✓ DeletionError type: EXISTS")
         print("  ✓ Error descriptions: IMPLEMENTED")
-        
         print("✅ RESULT: DELETION TYPES COMPLETE")
     }
     
     func testSafeDeletionCapabilities() {
         print("✅ Testing: Safe deletion capabilities")
-        
-        _ = CleanupItem(
+        let testItem = CleanupItem(
             fileName: "test.tmp",
             filePath: "/tmp/test.tmp",
             fileSize: 1024,
+            fileType: .temporary,
             lastModified: Date(),
             isProtected: false
         )
