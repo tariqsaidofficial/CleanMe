@@ -13,10 +13,10 @@
 [![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey.svg?style=flat-square)](https://www.apple.com/macos/)
 [![Architecture](https://img.shields.io/badge/Architecture-Apple%20Silicon%20%7C%20Intel-red.svg?style=flat-square)](https://www.apple.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme/badge)](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/YOUR_PROJECT_ID)](https://www.codacy.com/gh/tariqsaidofficial/CleanMe/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e49b6037664694b896d417139502bc492fcaf345)](https://app.codacy.com/organizations/gh/tariqsaidofficial/dashboard)
 [![Privacy First](https://img.shields.io/badge/Privacy-First-blueviolet.svg?style=flat-square)](https://www.apple.com/privacy/)
 
-![CleanME App Icon](https://img.shields.io/badge/🧹-CleanME-blue?style=for-the-badge&labelColor=black&color=0066CC)
+<img src="Sources/CleanME/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png" alt="CleanME App Icon" width="200" height="200"/>
 
 **CleanME** is a powerful, native macOS application designed to safely and transparently clean cache and log files, optimize storage space, and boost system performance—all while maintaining complete system integrity.
 
