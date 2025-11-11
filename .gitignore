@@ -37,3 +37,8 @@ CleanMe_icon-*.png
 
 # Logs
 *.log
+
+# Swift Package Manager (comprehensive)
+.swiftpm/
+*.xcworkspace/
+xcuserdata/
