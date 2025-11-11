@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProgressView: View {
+struct ScanProgressView: View {
     @Binding var progress: Double
     var label: String
 
@@ -18,9 +18,9 @@ struct ProgressView: View {
     }
 }
 
-struct ProgressView_Previews: PreviewProvider {
+struct ScanProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView(progress: .constant(50), label: "Cleaning...")
+        ScanProgressView(progress: .constant(50), label: "Cleaning...")
             .previewLayout(.sizeThatFits)
     }
 }

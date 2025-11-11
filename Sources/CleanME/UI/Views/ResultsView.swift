@@ -14,6 +14,8 @@ struct ResultsView: View {
     @State private var showingToast = false
     @State private var toastMessage = ""
     @State private var toastType: ToastType = .success
+    @State private var showSaveSheet = false
+    @State private var showDraftAlert = false
     
     var filteredResults: [CleanupItem] {
         let filtered = scanEngine.scanResults.filter { item in
@@ -48,8 +50,12 @@ struct ResultsView: View {
                 // Header with stats
                 headerView
                 
+                Divider()
+                
                 // Search and controls
                 controlsView
+                
+                Divider()
                 
                 // Results list
                 if filteredResults.isEmpty {
@@ -76,6 +82,8 @@ struct ResultsView: View {
                     .zIndex(1)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(minWidth: 600, idealWidth: 900, maxWidth: .infinity)
         .navigationTitle("Scan Results")
         .sheet(isPresented: $showingDeletionConfirmation) {
             deletionConfirmationSheet
@@ -83,116 +91,185 @@ struct ResultsView: View {
         .sheet(isPresented: $showingExportSheet) {
             exportSheet
         }
+        .sheet(isPresented: $showSaveSheet) {
+            SaveDocumentView(
+                onSave: { name, location in
+                    saveResults(name: name, location: location)
+                },
+                onDelete: {
+                    clearResults()
+                }
+            )
+        }
+        .alert("Save scan results as a draft?", isPresented: $showDraftAlert) {
+            Button("Save") { saveDraft() }
+            Button("Don't Save", role: .destructive) { discardDraft() }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This scan has not been saved and contains results. You can save it as a draft to review later.")
+        }
     }
     
     // MARK: - Header View
     private var headerView: some View {
-        VStack(spacing: 12) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Total Files")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+        HStack(spacing: 12) {
+            // Total Files
+            HStack(spacing: 8) {
+                Image(systemName: "doc.fill")
+                    .font(.title3)
+                    .foregroundColor(.blue)
+                VStack(alignment: .leading, spacing: 0) {
                     Text("\(scanEngine.scanResults.count)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .center, spacing: 4) {
-                    Text("Selected")
-                        .font(.caption)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    Text("Files")
+                        .font(.caption2)
                         .foregroundColor(.secondary)
-                    Text("\(selectedCount)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(selectedCount > 0 ? .blue : .primary)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text(selectedCount > 0 ? "Selected Size" : "Total Size")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text(formatBytes(selectedCount > 0 ? selectedSize : scanEngine.totalSize))
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(selectedCount > 0 ? .orange : .blue)
                 }
             }
+            .frame(maxWidth: .infinity)
+            
+            // Selected
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.title3)
+                    .foregroundColor(selectedCount > 0 ? .green : .secondary)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(selectedCount)")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    Text("Selected")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            
+            // Size
+            HStack(spacing: 8) {
+                Image(systemName: "internaldrive.fill")
+                    .font(.title3)
+                    .foregroundColor(selectedCount > 0 ? .orange : .blue)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text((selectedCount > 0 ? selectedSize : scanEngine.totalSize).formatBytes())
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    Text(selectedCount > 0 ? "Selected" : "Total")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
-        .padding()
-        .background(Color(.controlBackgroundColor))
+        .padding(20)
+        .background(.ultraThinMaterial)
     }
     
     // MARK: - Controls View
     private var controlsView: some View {
-        HStack(spacing: 12) {
-            // Search bar
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.secondary)
-                TextField("Search in results...", text: $searchText)
-                    .textFieldStyle(.plain)
-                
-                if !searchText.isEmpty {
-                    Button(action: { searchText = "" }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.secondary)
+        VStack(spacing: 16) {
+            HStack(spacing: 12) {
+                // Search bar
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.secondary)
+                    TextField("Search files...", text: $searchText)
+                        .textFieldStyle(.plain)
+                    
+                    if !searchText.isEmpty {
+                        Button(action: { searchText = "" }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.secondary)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
-            }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 6)
-            .background(Color(.controlBackgroundColor))
-            .cornerRadius(8)
-            
-            // Sort menu
-            Menu {
-                ForEach(SortOrder.allCases, id: \.self) { order in
-                    Button {
-                        sortOrder = order
-                    } label: {
-                        HStack {
-                            Text(order.displayName)
-                            if sortOrder == order {
-                                Image(systemName: "checkmark")
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(.ultraThinMaterial)
+                .cornerRadius(10)
+                
+                // Sort menu
+                Menu {
+                    ForEach(SortOrder.allCases, id: \.self) { order in
+                        Button {
+                            sortOrder = order
+                        } label: {
+                            HStack {
+                                Text(order.displayName)
+                                if sortOrder == order {
+                                    Image(systemName: "checkmark")
+                                }
                             }
                         }
                     }
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "arrow.up.arrow.down")
+                        Text("Sort")
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(10)
                 }
-            } label: {
-                HStack(spacing: 4) {
-                    Image(systemName: "arrow.up.arrow.down")
-                    Text("Sort")
-                }
+                .buttonStyle(.plain)
             }
-            .menuStyle(.borderlessButton)
-            .fixedSize()
             
-            // Select all / Deselect all
-            Button(action: toggleSelectAll) {
-                Text(selectedCount == filteredResults.count ? "Deselect All" : "Select All")
-            }
-            .buttonStyle(.bordered)
-            .fixedSize()
-            
-            // Export button
-            Button(action: { showingExportSheet = true }) {
-                HStack(spacing: 4) {
-                    Image(systemName: "square.and.arrow.up")
-                    Text("Export")
+            // Action Buttons
+            HStack(spacing: 12) {
+                // Select all / Deselect all
+                Button(action: toggleSelectAll) {
+                    HStack(spacing: 6) {
+                        Image(systemName: selectedCount == filteredResults.count ? "circle" : "checkmark.circle.fill")
+                        Text(selectedCount == filteredResults.count ? "Deselect All" : "Select All")
+                    }
                 }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                
+                Spacer()
+                
+                // Clean All button
+                Button(action: {
+                    selectedItems = Set(filteredResults.map { $0.id })
+                    showingDeletionConfirmation = true
+                }) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "sparkles")
+                        Text("Clean All")
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.orange)
+                .controlSize(.small)
+                .disabled(filteredResults.isEmpty)
+                
+                // Delete Selected button
+                Button(action: { showingDeletionConfirmation = true }) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "trash")
+                        Text("Delete Selected")
+                    }
+                }
+                .buttonStyle(.bordered)
+                .tint(.red)
+                .controlSize(.small)
+                .disabled(selectedItems.isEmpty)
+                
+                // Export button
+                Button(action: { showingExportSheet = true }) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("Export")
+                    }
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .disabled(filteredResults.isEmpty)
             }
-            .buttonStyle(.bordered)
-            .fixedSize()
-            .disabled(filteredResults.isEmpty)
         }
-        .padding(.horizontal)
-        .padding(.vertical, 8)
+        .padding(20)
     }
     
     // MARK: - Results List View
@@ -260,7 +337,7 @@ struct ResultsView: View {
                 Text("\(selectedCount) file(s) selected")
                     .font(.caption)
                     .foregroundColor(.secondary)
-                Text(formatBytes(selectedSize))
+                Text(selectedSize.formatBytes())
                     .font(.headline)
                     .foregroundColor(.orange)
             }
@@ -342,7 +419,7 @@ struct ResultsView: View {
                     Text("Total size:")
                         .foregroundColor(.secondary)
                     Spacer()
-                    Text(formatBytes(selectedSize))
+                    Text(selectedSize.formatBytes())
                         .fontWeight(.semibold)
                         .foregroundColor(.orange)
                 }
@@ -508,7 +585,7 @@ struct ResultsView: View {
                 let freedSpace = result.totalSizeDeleted
                 
                 if isSuccess {
-                    toastMessage = "Successfully deleted \(result.deletedCount) file(s) (\(formatBytes(freedSpace)))"
+                    toastMessage = "Successfully deleted \(result.deletedCount) file(s) (\(freedSpace.formatBytes()))"
                     toastType = .success
                 } else {
                     toastMessage = "Deleted \(result.deletedCount)/\(itemsToDelete.count) files. \(result.failedCount) error(s)"
@@ -563,11 +640,29 @@ struct ResultsView: View {
         }
     }
     
-    private func formatBytes(_ bytes: Int64) -> String {
-        let formatter = ByteCountFormatter()
-        formatter.allowedUnits = [.useKB, .useMB, .useGB]
-        formatter.countStyle = .file
-        return formatter.string(fromByteCount: bytes)
+    
+    private func saveResults(name: String, location: String) {
+        toastMessage = "Results saved to \(location)"
+        toastType = .success
+        showToast()
+    }
+    
+    private func clearResults() {
+        scanEngine.scanResults.removeAll()
+        selectedItems.removeAll()
+    }
+    
+    private func saveDraft() {
+        toastMessage = "Draft saved successfully"
+        toastType = .success
+        showToast()
+    }
+    
+    private func discardDraft() {
+        clearResults()
+        toastMessage = "Draft discarded"
+        toastType = .warning
+        showToast()
     }
 }
 

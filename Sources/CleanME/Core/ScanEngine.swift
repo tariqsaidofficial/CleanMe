@@ -7,52 +7,78 @@ class ScanEngine: ObservableObject {
     
     private var scanTask: Task<Void, Never>?
     
-    func performFullScan(progressCallback: @escaping (Double, String) async -> Void) async {
+    func performFullScan(selectedTypes: Set<String>, progressCallback: @escaping (Double, String) async -> Void) async {
         isScanning = true
         scanResults.removeAll()
         totalSize = 0
         
         var allItems: [CleanupItem] = []
+        let totalSteps = Double(selectedTypes.count)
+        var currentStep = 0.0
         
         // Scan cache directories
-        await progressCallback(0.08, "Scanning cache files...")
-        let cacheItems = await scanCacheDirectories()
-        allItems.append(contentsOf: cacheItems)
+        if selectedTypes.contains("Cache Files") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Scanning cache files...")
+            let cacheItems = await scanCacheDirectories()
+            allItems.append(contentsOf: cacheItems)
+        }
         
         // Scan log directories  
-        await progressCallback(0.2, "Scanning log files...")
-        let logItems = await scanLogDirectories()
-        allItems.append(contentsOf: logItems)
+        if selectedTypes.contains("Log Files") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Scanning log files...")
+            let logItems = await scanLogDirectories()
+            allItems.append(contentsOf: logItems)
+        }
         
         // Scan temporary directories
-        await progressCallback(0.32, "Scanning temporary files...")
-        let tempItems = await scanTemporaryDirectories()
-        allItems.append(contentsOf: tempItems)
+        if selectedTypes.contains("Temporary Files") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Scanning temporary files...")
+            let tempItems = await scanTemporaryDirectories()
+            allItems.append(contentsOf: tempItems)
+        }
         
         // Scan trash/recycle bin
-        await progressCallback(0.44, "Scanning trash bin...")
-        let trashItems = await scanTrashDirectories()
-        allItems.append(contentsOf: trashItems)
+        if selectedTypes.contains("Trash Bin") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Scanning trash bin...")
+            let trashItems = await scanTrashDirectories()
+            allItems.append(contentsOf: trashItems)
+        }
         
         // Scan downloads folder
-        await progressCallback(0.56, "Analyzing downloads folder...")
-        let downloadItems = await scanDownloadsDirectory()
-        allItems.append(contentsOf: downloadItems)
+        if selectedTypes.contains("Downloads") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Analyzing downloads folder...")
+            let downloadItems = await scanDownloadsDirectory()
+            allItems.append(contentsOf: downloadItems)
+        }
         
         // Find duplicate files
-        await progressCallback(0.68, "Finding duplicate files...")
-        let duplicateItems = await findDuplicateFiles()
-        allItems.append(contentsOf: duplicateItems)
+        if selectedTypes.contains("Duplicates") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Finding duplicate files...")
+            let duplicateItems = await findDuplicateFiles()
+            allItems.append(contentsOf: duplicateItems)
+        }
         
         // Scan for large files
-        await progressCallback(0.80, "Identifying large files...")
-        let largeFiles = await scanForLargeFiles()
-        allItems.append(contentsOf: largeFiles)
+        if selectedTypes.contains("Large Files") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Identifying large files...")
+            let largeFiles = await scanForLargeFiles()
+            allItems.append(contentsOf: largeFiles)
+        }
         
         // Scan for empty folders
-        await progressCallback(0.92, "Finding empty folders...")
-        let emptyFolders = await scanForEmptyFolders()
-        allItems.append(contentsOf: emptyFolders)
+        if selectedTypes.contains("Empty Folders") {
+            currentStep += 1
+            await progressCallback(currentStep / totalSteps, "Finding empty folders...")
+            let emptyFolders = await scanForEmptyFolders()
+            allItems.append(contentsOf: emptyFolders)
+        }
         
         // Update results
         let finalResults = allItems
@@ -62,6 +88,17 @@ class ScanEngine: ObservableObject {
             self.scanResults = finalResults
             self.totalSize = finalSize
             self.isScanning = false
+            
+            // Send notification
+            let formatter = ByteCountFormatter()
+            formatter.allowedUnits = [.useKB, .useMB, .useGB]
+            formatter.countStyle = .file
+            let sizeString = formatter.string(fromByteCount: finalSize)
+            
+            NotificationManager.shared.sendScanCompleteNotification(
+                filesFound: finalResults.count,
+                totalSize: sizeString
+            )
         }
         
         await progressCallback(1.0, "Scan completed")
@@ -515,11 +552,11 @@ class ScanEngine: ObservableObject {
     
     // MARK: - Public Scan Methods
     
-    func startScan() async {
+    func startScan(selectedTypes: Set<String> = Set(["Cache Files", "Log Files", "Temporary Files"])) async {
         guard !isScanning else { return }
         
         scanTask = Task {
-            await performFullScan { progress, message in
+            await performFullScan(selectedTypes: selectedTypes) { progress, message in
                 await MainActor.run {
                     // Progress updates
                 }
