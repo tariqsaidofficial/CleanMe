@@ -50,8 +50,12 @@ struct ResultsView: View {
                 // Header with stats
                 headerView
                 
+                Divider()
+                
                 // Search and controls
                 controlsView
+                
+                Divider()
                 
                 // Results list
                 if filteredResults.isEmpty {
@@ -78,6 +82,7 @@ struct ResultsView: View {
                     .zIndex(1)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .frame(minWidth: 600, idealWidth: 900, maxWidth: .infinity)
         .navigationTitle("Scan Results")
         .sheet(isPresented: $showingDeletionConfirmation) {
@@ -107,55 +112,68 @@ struct ResultsView: View {
     
     // MARK: - Header View
     private var headerView: some View {
-        VStack(spacing: 12) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Total Files")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+        HStack(spacing: 12) {
+            // Total Files
+            HStack(spacing: 8) {
+                Image(systemName: "doc.fill")
+                    .font(.title3)
+                    .foregroundColor(.blue)
+                VStack(alignment: .leading, spacing: 0) {
                     Text("\(scanEngine.scanResults.count)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .center, spacing: 4) {
-                    Text("Selected")
-                        .font(.caption)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    Text("Files")
+                        .font(.caption2)
                         .foregroundColor(.secondary)
-                    Text("\(selectedCount)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(selectedCount > 0 ? .blue : .primary)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text(selectedCount > 0 ? "Selected Size" : "Total Size")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Text(formatBytes(selectedCount > 0 ? selectedSize : scanEngine.totalSize))
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(selectedCount > 0 ? .orange : .blue)
                 }
             }
+            .frame(maxWidth: .infinity)
+            
+            // Selected
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.title3)
+                    .foregroundColor(selectedCount > 0 ? .green : .secondary)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(selectedCount)")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    Text("Selected")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            
+            // Size
+            HStack(spacing: 8) {
+                Image(systemName: "internaldrive.fill")
+                    .font(.title3)
+                    .foregroundColor(selectedCount > 0 ? .orange : .blue)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text((selectedCount > 0 ? selectedSize : scanEngine.totalSize).formatBytes())
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    Text(selectedCount > 0 ? "Selected" : "Total")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
-        .padding()
-        .background(Color(.controlBackgroundColor))
+        .padding(20)
+        .background(.ultraThinMaterial)
     }
     
     // MARK: - Controls View
     private var controlsView: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             HStack(spacing: 12) {
                 // Search bar
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.secondary)
-                    TextField("Search in results...", text: $searchText)
+                    TextField("Search files...", text: $searchText)
                         .textFieldStyle(.plain)
                     
                     if !searchText.isEmpty {
@@ -166,10 +184,10 @@ struct ResultsView: View {
                         .buttonStyle(.plain)
                     }
                 }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 6)
-                .background(Color(.controlBackgroundColor))
-                .cornerRadius(8)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(.ultraThinMaterial)
+                .cornerRadius(10)
                 
                 // Sort menu
                 Menu {
@@ -186,13 +204,16 @@ struct ResultsView: View {
                         }
                     }
                 } label: {
-                    HStack(spacing: 4) {
+                    HStack(spacing: 6) {
                         Image(systemName: "arrow.up.arrow.down")
                         Text("Sort")
                     }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(10)
                 }
-                .menuStyle(.borderlessButton)
-                .fixedSize()
+                .buttonStyle(.plain)
             }
             
             // Action Buttons
@@ -205,6 +226,7 @@ struct ResultsView: View {
                     }
                 }
                 .buttonStyle(.bordered)
+                .controlSize(.small)
                 
                 Spacer()
                 
@@ -220,6 +242,7 @@ struct ResultsView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.orange)
+                .controlSize(.small)
                 .disabled(filteredResults.isEmpty)
                 
                 // Delete Selected button
@@ -231,6 +254,7 @@ struct ResultsView: View {
                 }
                 .buttonStyle(.bordered)
                 .tint(.red)
+                .controlSize(.small)
                 .disabled(selectedItems.isEmpty)
                 
                 // Export button
@@ -241,12 +265,11 @@ struct ResultsView: View {
                     }
                 }
                 .buttonStyle(.bordered)
+                .controlSize(.small)
                 .disabled(filteredResults.isEmpty)
             }
         }
-        .padding(.horizontal)
-        .padding(.vertical, 8)
-        .background(Color(.controlBackgroundColor).opacity(0.5))
+        .padding(20)
     }
     
     // MARK: - Results List View
@@ -314,7 +337,7 @@ struct ResultsView: View {
                 Text("\(selectedCount) file(s) selected")
                     .font(.caption)
                     .foregroundColor(.secondary)
-                Text(formatBytes(selectedSize))
+                Text(selectedSize.formatBytes())
                     .font(.headline)
                     .foregroundColor(.orange)
             }
@@ -396,7 +419,7 @@ struct ResultsView: View {
                     Text("Total size:")
                         .foregroundColor(.secondary)
                     Spacer()
-                    Text(formatBytes(selectedSize))
+                    Text(selectedSize.formatBytes())
                         .fontWeight(.semibold)
                         .foregroundColor(.orange)
                 }
@@ -562,7 +585,7 @@ struct ResultsView: View {
                 let freedSpace = result.totalSizeDeleted
                 
                 if isSuccess {
-                    toastMessage = "Successfully deleted \(result.deletedCount) file(s) (\(formatBytes(freedSpace)))"
+                    toastMessage = "Successfully deleted \(result.deletedCount) file(s) (\(freedSpace.formatBytes()))"
                     toastType = .success
                 } else {
                     toastMessage = "Deleted \(result.deletedCount)/\(itemsToDelete.count) files. \(result.failedCount) error(s)"
@@ -617,12 +640,6 @@ struct ResultsView: View {
         }
     }
     
-    private func formatBytes(_ bytes: Int64) -> String {
-        let formatter = ByteCountFormatter()
-        formatter.allowedUnits = [.useKB, .useMB, .useGB]
-        formatter.countStyle = .file
-        return formatter.string(fromByteCount: bytes)
-    }
     
     private func saveResults(name: String, location: String) {
         toastMessage = "Results saved to \(location)"
@@ -632,7 +649,6 @@ struct ResultsView: View {
     
     private func clearResults() {
         scanEngine.scanResults.removeAll()
-        scanEngine.fileItems.removeAll()
         selectedItems.removeAll()
     }
     

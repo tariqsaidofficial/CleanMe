@@ -26,3 +26,12 @@ extension FileManager {
         return urls(for: .documentDirectory, in: .userDomainMask).first
     }
 }
+
+extension Int64 {
+    func formatBytes() -> String {
+        let formatter = ByteCountFormatter()
+        formatter.allowedUnits = [.useKB, .useMB, .useGB]
+        formatter.countStyle = .file
+        return formatter.string(fromByteCount: self)
+    }
+}

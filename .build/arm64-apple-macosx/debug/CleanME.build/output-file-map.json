@@ -23,13 +23,6 @@
     "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FeedbackManager.swiftdeps",
     "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FeedbackManager.dia"
   },
-  "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Core/FileAnalyzer.swift": {
-    "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileAnalyzer.d",
-    "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileAnalyzer.swift.o",
-    "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileAnalyzer~partial.swiftmodule",
-    "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileAnalyzer.swiftdeps",
-    "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileAnalyzer.dia"
-  },
   "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Core/ScanEngine.swift": {
     "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanEngine.d",
     "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanEngine.swift.o",
@@ -72,26 +65,12 @@
     "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ExportTypes.swiftdeps",
     "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ExportTypes.dia"
   },
-  "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/FileItem.swift": {
-    "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileItem.d",
-    "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileItem.swift.o",
-    "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileItem~partial.swiftmodule",
-    "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileItem.swiftdeps",
-    "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileItem.dia"
-  },
   "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ScanResult.swift": {
     "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanResult.d",
     "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanResult.swift.o",
     "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanResult~partial.swiftmodule",
     "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanResult.swiftdeps",
     "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanResult.dia"
-  },
-  "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/FileManager.swift": {
-    "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileManager.d",
-    "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileManager.swift.o",
-    "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileManager~partial.swiftmodule",
-    "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileManager.swiftdeps",
-    "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileManager.dia"
   },
   "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/SecurityManager.swift": {
     "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/SecurityManager.d",
@@ -114,26 +93,19 @@
     "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileItemRow.swiftdeps",
     "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/FileItemRow.dia"
   },
-  "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/UI/Components/ProgressView.swift": {
-    "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ProgressView.d",
-    "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ProgressView.swift.o",
-    "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ProgressView~partial.swiftmodule",
-    "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ProgressView.swiftdeps",
-    "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ProgressView.dia"
-  },
-  "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/UI/Components/ResultCard.swift": {
-    "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ResultCard.d",
-    "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ResultCard.swift.o",
-    "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ResultCard~partial.swiftmodule",
-    "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ResultCard.swiftdeps",
-    "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ResultCard.dia"
-  },
   "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/UI/Components/SaveDocumentView.swift": {
     "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/SaveDocumentView.d",
     "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/SaveDocumentView.swift.o",
     "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/SaveDocumentView~partial.swiftmodule",
     "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/SaveDocumentView.swiftdeps",
     "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/SaveDocumentView.dia"
+  },
+  "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/UI/Components/ScanProgressView.swift": {
+    "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanProgressView.d",
+    "object": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanProgressView.swift.o",
+    "swiftmodule": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanProgressView~partial.swiftmodule",
+    "swift-dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanProgressView.swiftdeps",
+    "diagnostics": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ScanProgressView.dia"
   },
   "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/UI/Components/ShortcutOverlayView.swift": {
     "dependencies": "/Users/sunmarke/Desktop/CleanMe/.build/arm64-apple-macosx/debug/CleanME.build/ShortcutOverlayView.d",

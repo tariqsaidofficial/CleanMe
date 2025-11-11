@@ -121,7 +121,7 @@ struct ContentView: View {
     private func startScan() {
         FeedbackManager.shared.trigger(.levelChange)
         Task {
-            await scanEngine.performFullScan { _, _ in }
+            await scanEngine.performFullScan(selectedTypes: Set(["Cache Files", "Log Files", "Temporary Files"])) { _, _ in }
         }
     }
     
@@ -166,10 +166,6 @@ struct SearchField: View {
 struct FolderDetailView: View {
     let folder: Folder
     @EnvironmentObject var scanEngine: ScanEngine
-    @State private var sortOrder: [KeyPathComparator<FileItem>] = [
-        .init(\.dateModified, order: .reverse)
-    ]
-    @State private var selection: Set<FileItem.ID> = []
     
     var body: some View {
         Group {
@@ -178,7 +174,8 @@ struct FolderDetailView: View {
                 ScanView()
                     .environmentObject(scanEngine)
             case .results:
-                fileTableView
+                ResultsView()
+                    .environmentObject(scanEngine)
             case .settings:
                 SettingsView()
             case .about:
@@ -186,35 +183,6 @@ struct FolderDetailView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-    
-    private var fileTableView: some View {
-        ScrollView {
-            LazyVGrid(
-                columns: [GridItem(.adaptive(minimum: 350, maximum: 500), spacing: 12)],
-                alignment: .leading,
-                spacing: 12
-            ) {
-                ForEach(scanEngine.fileItems) { item in
-                    ResultCard(
-                        item: item,
-                        isSelected: selection.contains(item.id),
-                        onToggle: {
-                            if selection.contains(item.id) {
-                                selection.remove(item.id)
-                            } else {
-                                selection.insert(item.id)
-                            }
-                        }
-                    )
-                    .transition(.scale.combined(with: .opacity))
-                }
-            }
-            .padding()
-            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: scanEngine.fileItems)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Material.ultraThin)
     }
 }
 

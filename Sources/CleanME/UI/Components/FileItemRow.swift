@@ -39,7 +39,7 @@ struct FileItemRow: View {
             
             VStack(alignment: .trailing, spacing: 2) {
                 // File size
-                Text(formatBytes(item.fileSize))
+                Text(item.fileSize.formatBytes())
                     .font(.body)
                     .fontWeight(.medium)
                 
@@ -54,13 +54,6 @@ struct FileItemRow: View {
         .onTapGesture {
             onToggle()
         }
-    }
-    
-    private func formatBytes(_ bytes: Int64) -> String {
-        let formatter = ByteCountFormatter()
-        formatter.allowedUnits = [.useKB, .useMB, .useGB]
-        formatter.countStyle = .file
-        return formatter.string(fromByteCount: bytes)
     }
 }
 
