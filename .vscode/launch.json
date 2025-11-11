@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:CleanMe}/CleanME",
+            "name": "Debug CleanME (CleanME)",
+            "target": "CleanME",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug CleanME (CleanME)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:CleanMe}/CleanME",
+            "name": "Release CleanME (CleanME)",
+            "target": "CleanME",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release CleanME (CleanME)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:CleanMe}",
+            "name": "Debug CleanME",
+            "target": "CleanME",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug CleanME"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:CleanMe}",
+            "name": "Release CleanME",
+            "target": "CleanME",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release CleanME"
+        }
+    ]
+}

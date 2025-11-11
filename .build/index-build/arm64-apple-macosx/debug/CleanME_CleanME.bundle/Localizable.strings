@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  CleanME
+*/
+
+// App Name
+"app_name" = "CleanME";
+
+// Navigation
+"scan_tab" = "فحص النظام";
+"results_tab" = "النتائج";  
+"settings_tab" = "الإعدادات";
+
+// Scan View
+"scan_title" = "فحص النظام";
+"scan_subtitle" = "اكتشف الملفات المؤقتة والكاش لتحرير مساحة التخزين";
+"scan_button_start" = "بدء الفحص";
+"scan_button_stop" = "إيقاف الفحص";
+"scanning_progress" = "جاري الفحص...";
+"scan_complete" = "تم الفحص بنجاح";
+"files_found" = "الملفات المكتشفة:";
+"space_recoverable" = "المساحة القابلة للتحرير:";
+
+// Scan Options
+"scan_options" = "خيارات الفحص";
+"scan_cache" = "فحص ملفات الكاش";
+"scan_logs" = "فحص ملفات اللوج";
+"scan_temp" = "فحص الملفات المؤقتة";
+"scan_trash" = "فحص سلة المهملات";
+
+// Results View
+"results_title" = "نتائج الفحص";
+"total_files" = "إجمالي الملفات";
+"total_size" = "إجمالي الحجم";
+"delete_selected" = "حذف المحدد";
+
+// Settings
+"settings_general" = "عام";
+"settings_security" = "الأمان";
+"enable_logging" = "تفعيل السجلات";
+"confirm_before_delete" = "تأكيد قبل الحذف";
+"safe_mode" = "الوضع الآمن";
+
+// Messages
+"scan_completed" = "تم إكمال الفحص";
+"cleanup_completed" = "تم تنظيف الملفات";
+"error_permission" = "تم رفض الإذن";
+
+// About
+"app_version" = "الإصدار 1.0.0";
+"app_description" = "تطبيق آمن وشفاف لتنظيف ملفات الكاش والملفات المؤقتة";
+"copyright" = "© 2025 CleanME. جميع الحقوق محفوظة.";
+"settings_exclusions" = "Manage Exclusions";

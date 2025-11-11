@@ -1,0 +1,922 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.xctest/Contents/MacOS/CleanMEPackageTests",
+      "packagePath" : "/Users/sunmarke/Desktop/CleanMe",
+      "productName" : "CleanMEPackageTests"
+    }
+  ],
+  "copyCommands" : {
+    "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME_CleanME.bundle/Assets.xcassets" : {
+      "inputs" : [
+        {
+          "kind" : "directory",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Resources/Assets.xcassets"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "directory",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME_CleanME.bundle/Assets.xcassets"
+        }
+      ]
+    },
+    "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME_CleanME.bundle/Localizable.strings" : {
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Resources/Localizable.strings"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME_CleanME.bundle/Localizable.strings"
+        }
+      ]
+    }
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.CleanME-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/sources",
+      "importPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/CleanMEApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/AppSettings.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/CleanupItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/DeletionTypes.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ExportTypes.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ScanResult.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/FileManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/ScanEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/SecurityManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Constants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Extensions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Logger.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/NSWindowExtensions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/AboutView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/EmptyStateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/FileItemRow.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/ProgressView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ResultsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ScanView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<CleanME-arm64-apple-macosx26.0-debug.module-resources>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "CleanME",
+      "moduleOutputPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanME.swiftmodule",
+      "objects" : [
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/CleanMEApp.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/ContentView.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/AppSettings.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/CleanupItem.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/DeletionTypes.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/ExportTypes.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/ScanResult.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/FileManager.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/ScanEngine.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/SecurityManager.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/Constants.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/Extensions.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/Logger.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/NSWindowExtensions.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/AboutView.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/EmptyStateView.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/FileItemRow.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/ProgressView.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/ResultsView.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/ScanView.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/SettingsView.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/resource_bundle_accessor.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-Onone",
+        "-enable-testing",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE",
+        "-module-cache-path",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "CleanME_main",
+        "-swift-version",
+        "5",
+        "-Xfrontend",
+        "-enable-upcoming-feature",
+        "-Xfrontend",
+        "BareSlashRegexLiterals",
+        "-Xfrontend",
+        "-experimental-lazy-typecheck",
+        "-Xfrontend",
+        "-experimental-skip-all-function-bodies",
+        "-Xfrontend",
+        "-experimental-allow-module-with-compiler-errors",
+        "-Xfrontend",
+        "-empty-abi-descriptor",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "cleanme"
+      ],
+      "outputFileMapPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanME.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : true,
+      "sources" : [
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/CleanMEApp.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/ContentView.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/AppSettings.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/CleanupItem.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/DeletionTypes.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ExportTypes.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ScanResult.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/FileManager.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/ScanEngine.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/SecurityManager.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Constants.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Extensions.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Logger.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/NSWindowExtensions.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/AboutView.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/EmptyStateView.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/FileItemRow.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/ProgressView.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ResultsView.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ScanView.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/SettingsView.swift",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/DerivedSources/resource_bundle_accessor.swift"
+      ],
+      "tempsPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CleanMEPackageTests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/sources",
+      "importPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanMETests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CleanMEPackageTests",
+      "moduleOutputPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanMEPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/include/CleanMEPackageTests-Swift.h",
+        "-Xfrontend",
+        "-experimental-lazy-typecheck",
+        "-Xfrontend",
+        "-experimental-skip-all-function-bodies",
+        "-Xfrontend",
+        "-experimental-allow-module-with-compiler-errors",
+        "-Xfrontend",
+        "-empty-abi-descriptor",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "cleanme"
+      ],
+      "outputFileMapPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanMEPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : true,
+      "sources" : [
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CleanMETests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/sources",
+      "importPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BackendCompletionTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BasicTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/ScanEngineAdvancedTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanME.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CleanMETests",
+      "moduleOutputPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanMETests.swiftmodule",
+      "objects" : [
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/BackendCompletionTests.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/BasicTests.swift.o",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/ScanEngineAdvancedTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "5",
+        "-Xfrontend",
+        "-experimental-lazy-typecheck",
+        "-Xfrontend",
+        "-experimental-skip-all-function-bodies",
+        "-Xfrontend",
+        "-experimental-allow-module-with-compiler-errors",
+        "-Xfrontend",
+        "-empty-abi-descriptor",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "cleanme"
+      ],
+      "outputFileMapPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules/CleanMETests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : true,
+      "sources" : [
+        "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BackendCompletionTests.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BasicTests.swift",
+        "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/ScanEngineAdvancedTests.swift"
+      ],
+      "tempsPath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "CleanME" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanME",
+      "-package-name",
+      "cleanme",
+      "-c",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/CleanMEApp.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/ContentView.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/AppSettings.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/CleanupItem.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/DeletionTypes.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ExportTypes.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ScanResult.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/FileManager.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/ScanEngine.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/SecurityManager.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Constants.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Extensions.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Logger.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/NSWindowExtensions.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/AboutView.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/EmptyStateView.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/FileItemRow.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/ProgressView.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ResultsView.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ScanView.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/SettingsView.swift",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/DerivedSources/resource_bundle_accessor.swift",
+      "-I",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-Onone",
+      "-enable-testing",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE",
+      "-module-cache-path",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "CleanME_main",
+      "-swift-version",
+      "5",
+      "-Xfrontend",
+      "-enable-upcoming-feature",
+      "-Xfrontend",
+      "BareSlashRegexLiterals",
+      "-Xfrontend",
+      "-experimental-lazy-typecheck",
+      "-Xfrontend",
+      "-experimental-skip-all-function-bodies",
+      "-Xfrontend",
+      "-experimental-allow-module-with-compiler-errors",
+      "-Xfrontend",
+      "-empty-abi-descriptor",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "cleanme",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanMEPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanMEPackageTests",
+      "-package-name",
+      "cleanme",
+      "-c",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/include/CleanMEPackageTests-Swift.h",
+      "-Xfrontend",
+      "-experimental-lazy-typecheck",
+      "-Xfrontend",
+      "-experimental-skip-all-function-bodies",
+      "-Xfrontend",
+      "-experimental-allow-module-with-compiler-errors",
+      "-Xfrontend",
+      "-empty-abi-descriptor",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "cleanme",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanMETests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanMETests",
+      "-package-name",
+      "cleanme",
+      "-c",
+      "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BackendCompletionTests.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BasicTests.swift",
+      "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/ScanEngineAdvancedTests.swift",
+      "-I",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "5",
+      "-Xfrontend",
+      "-experimental-lazy-typecheck",
+      "-Xfrontend",
+      "-experimental-skip-all-function-bodies",
+      "-Xfrontend",
+      "-experimental-allow-module-with-compiler-errors",
+      "-Xfrontend",
+      "-empty-abi-descriptor",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "cleanme",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "CleanME" : [
+
+    ],
+    "CleanMEPackageTests" : [
+      "CleanMETests",
+      "CleanME"
+    ],
+    "CleanMETests" : [
+      "CleanME"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/CleanMEApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/App/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/AppSettings.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/CleanupItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/DeletionTypes.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ExportTypes.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Models/ScanResult.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/FileManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/ScanEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Services/SecurityManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Constants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Extensions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/Logger.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Utils/NSWindowExtensions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/AboutView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/EmptyStateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/FileItemRow.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/Components/ProgressView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ResultsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/ScanView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Sources/CleanME/Views/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/DerivedSources/resource_bundle_accessor.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanME.build/sources"
+    },
+    "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMEPackageTests.build/sources"
+    },
+    "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BackendCompletionTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/BasicTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sunmarke/Desktop/CleanMe/Tests/CleanMETests/ScanEngineAdvancedTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/CleanMETests.build/sources"
+    },
+    "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/sunmarke/Desktop/CleanMe/.build/index-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+// This test file is disabled due to missing ScanEngineTests type and broken references.
