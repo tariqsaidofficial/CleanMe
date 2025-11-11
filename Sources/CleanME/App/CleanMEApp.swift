@@ -39,7 +39,14 @@ struct MacApp: App {
 
 // MARK: - App Delegate
 class AppDelegate: NSObject, NSApplicationDelegate {
+    private var menuBarManager: MenuBarManager?
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Initialize Menu Bar Manager
+        Task { @MainActor in
+            menuBarManager = MenuBarManager.shared
+        }
+        
         // Bring app to front on launch
         NSApp.activate(ignoringOtherApps: true)
         
@@ -48,9 +55,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.titlebarAppearsTransparent = true
             window.titleVisibility = .hidden
         }
+        
+        // Setup notification observers
+        setupNotificationObservers()
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        return true
+        // Don't quit when main window closes - keep menu bar icon active
+        return false
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        // Clean up
+        Task { @MainActor in
+            menuBarManager?.stopMonitoring()
+        }
+    }
+    
+    private func setupNotificationObservers() {
+        // Listen for quick scan requests from menu bar
+        NotificationCenter.default.addObserver(
+            forName: .performQuickScan,
+            object: nil,
+            queue: .main
+        ) { _ in
+            // Activate app and trigger scan
+            NSApp.activate(ignoringOtherApps: true)
+            // TODO: Trigger scan in ContentView
+        }
+        
+        // Listen for preferences open requests
+        NotificationCenter.default.addObserver(
+            forName: .openPreferences,
+            object: nil,
+            queue: .main
+        ) { _ in
+            // Open settings window
+            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        }
     }
 }
