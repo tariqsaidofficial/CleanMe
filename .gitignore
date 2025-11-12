@@ -1,44 +1,109 @@
-# Build artifacts
-.build/
-*.app/
-*.dSYM/
-
-# Swift Package Manager
-.swiftpm/
-*.xcodeproj/
-xcuserdata/
-.DS_Store
-
-# Xcode
-*.xcworkspace/
-*.xcuserstate
-
-# Temporary files
-*.swp
-*.swo
-*~
-.*.swp
-
-# Test outputs
-test_output.txt
-
-# Generated images (keep originals only)
-CleanMe.png
-CleanMe_icon-*.png
-
-# IDE
-.vscode/
-.idea/
-
+####################################
 # macOS
+####################################
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Logs
-*.log
+# Icon must end with two \r
+Icon
+._*
 
-# Swift Package Manager (comprehensive)
-.swiftpm/
-*.xcworkspace/
+# Thumbnails
+._.DS_Store
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Hidden volume files
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+
+####################################
+# Xcode
+####################################
+DerivedData/
+build/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
 xcuserdata/
+*.xcworkspacedata
+
+# Uncomment if your project is not a package-based project
+# *.xcodeproj/
+# *.xcworkspace/
+
+####################################
+# Swift Package Manager
+####################################
+.swiftpm/
+.build/
+Packages/
+Package.resolved
+
+####################################
+# Build Artifacts
+####################################
+*.app/
+*.dSYM/
+*.ipa
+*.framework
+*.xcarchive
+
+####################################
+# Logs
+####################################
+*.log
+*.out
+*.err
+
+####################################
+# Editors & IDEs
+####################################
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+####################################
+# Temporary / Cache files
+####################################
+*.tmp
+*.bak
+*.orig
+
+####################################
+# Test outputs
+####################################
+test_output.txt
+coverage/
+*.gcda
+*.gcno
+*.profdata
+
+####################################
+# Generated Assets
+####################################
+CleanMe_icon-*.png
+CleanMe.png
+
+####################################
+# Fastlane
+####################################
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+####################################
+# System
+####################################
+*.lock
+.env
+.env.*
