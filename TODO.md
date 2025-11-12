@@ -1,5 +1,32 @@
 # 📝 CleanME TODO List
 
+## ✅ Recently Completed
+
+### UI/UX Redesign (2025-11-12)
+
+- [x] **Complete AboutView redesign** with macOS 26 UI Kit inspiration
+- [x] **Vibrancy effects** and glass morphism throughout the interface
+- [x] **Gradient backgrounds** with dynamic color changes based on selected tab
+- [x] **Hover effects** with smooth spring animations
+- [x] **SF Symbols 6** integration with advanced rendering modes
+- [x] **Custom tab selector** with pill-shaped design and gradient borders
+- [x] **Floating footer** replaced with integrated action cards
+- [x] **6 feature cards** in 3x2 grid layout (Smart Clean, Duplicate Finder, System Safe, Performance, GitHub, Website)
+- [x] **Compact header** with horizontal layout for better space utilization
+- [x] **App logo integration** in both header and sidebar
+- [x] **Automatic logo deployment** via enhanced run_app.sh script
+
+### Technical Improvements
+
+- [x] **AppLogoView component** - Reusable logo component with multiple fallback options
+- [x] **Enhanced build script** - Automatic asset copying and app bundle creation
+- [x] **Logo asset management** - Proper handling of LogoLarge.imageset resources
+- [x] **Responsive design** - Optimized for different window sizes without scrolling
+- [x] **Modern animations** - Spring-based transitions and symbol effects
+- [x] **Glass morphism cards** - Ultra-thin material backgrounds with subtle borders
+
+---
+
 ## 🔥 Immediate Priorities (This Week)
 
 ### 1. Menu Bar Widget

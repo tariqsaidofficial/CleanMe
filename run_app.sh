@@ -7,6 +7,31 @@ swift build
 echo "📦 Creating app bundle..."
 mkdir -p .build/debug/CleanME.app/Contents/{MacOS,Resources}
 
+# Copy executable
+cp .build/debug/CleanME .build/debug/CleanME.app/Contents/MacOS/
+
+# Copy logo to app bundle resources
+echo "🎨 Adding app logo..."
+if [ -f "Sources/CleanME/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png" ]; then
+    # Copy as AppIcon.png for the app icon
+    cp "Sources/CleanME/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png" ".build/debug/CleanME.app/Contents/Resources/AppIcon.png"
+    
+    # Create the nested directory structure for direct access
+    mkdir -p ".build/debug/CleanME.app/Contents/Resources/Assets.xcassets/LogoLarge.imageset/"
+    cp "Sources/CleanME/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png" ".build/debug/CleanME.app/Contents/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png"
+    
+    echo "✅ Logo added to app bundle (both locations)"
+else
+    echo "⚠️  Logo file not found"
+fi
+
+# Copy all assets
+echo "📁 Copying assets..."
+if [ -d "Sources/CleanME/Resources" ]; then
+    cp -r "Sources/CleanME/Resources/"* ".build/debug/CleanME.app/Contents/Resources/"
+    echo "✅ Assets copied to app bundle"
+fi
+
 # Create Info.plist
 cat > .build/debug/CleanME.app/Contents/Info.plist << 'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -25,28 +50,15 @@ cat > .build/debug/CleanME.app/Contents/Info.plist << 'EOF'
     <string>1.0.0</string>
     <key>CFBundleVersion</key>
     <string>1</string>
-    <key>NSHighResolutionCapable</key>
-    <true/>
-    <key>LSMinimumSystemVersion</key>
-    <string>12.0</string>
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
 </dict>
 </plist>
 EOF
 
-# Copy executable
-cp .build/arm64-apple-macosx/debug/CleanME .build/debug/CleanME.app/Contents/MacOS/CleanME
-
-# Copy resources
-if [ -d "Sources/CleanME/Resources/Assets.xcassets" ]; then
-    cp -r Sources/CleanME/Resources/Assets.xcassets .build/debug/CleanME.app/Contents/Resources/
-fi
-
 echo "✅ App bundle created at: .build/debug/CleanME.app"
-echo "🚀 Launching app..."
 
-# Launch the app
+echo "🚀 Launching app..."
 open .build/debug/CleanME.app
 
 echo "✨ Done! Check your Dock for the CleanME icon!"

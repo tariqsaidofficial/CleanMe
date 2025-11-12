@@ -14,24 +14,8 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 // Logo Header
                 HStack(spacing: 12) {
-                    // Load logo from bundle
-                    if let resourcePath = Bundle.main.resourcePath,
-                       let logoImage = NSImage(contentsOfFile: resourcePath + "/CleanME_CleanME.bundle/logo.png") {
-                        Image(nsImage: logoImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 32, height: 32)
-                    } else {
-                        Image(systemName: "sparkles.rectangle.stack.fill")
-                            .font(.system(size: 28))
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.blue, .cyan],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                    }
+                    // Use the same AppLogoView as in AboutView
+                    AppLogoView(size: 36)
                     
                     Text("CleanME")
                         .font(.title3)
