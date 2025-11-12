@@ -278,16 +278,65 @@ Want to help? Pick any task from this list and:
 - Write descriptive commit messages
 - Add comments for complex logic
 
-### Git Workflow
+### Git Workflow & Commit Rules
+
+#### Branch Strategy
+
 ```bash
-# Feature branch
+# Main branches
+main     # Stable releases only
+develop  # Active development (current working branch)
+
+# Feature branches
 git checkout -b feature/menu-bar-widget
+git checkout -b fix/scan-performance
+git checkout -b ui/settings-redesign
+```
 
-# Commit with conventional commits
-git commit -m "feat: Add menu bar widget with disk monitoring"
+#### Commit Message Format
 
-# Push and create PR
-git push origin feature/menu-bar-widget
+```text
+<type>: <short summary>
+
+Types:
+feat     - New feature
+fix      - Bug fix
+refactor - Code restructuring without behavior change
+ui       - UI/UX changes
+test     - Adding or modifying tests
+docs     - Documentation updates
+chore    - Dependencies, build, or maintenance tasks
+```
+
+#### Examples
+
+```bash
+# Good commits
+git commit -m "feat: add cache cleaning engine"
+git commit -m "fix: resolve crash when scanning large folders"
+git commit -m "ui: update sidebar layout for dark mode"
+git commit -m "refactor: optimize file scanning loop"
+git commit -m "test: add unit tests for cleanup summary"
+git commit -m "docs: update README installation section"
+git commit -m "chore: update SwiftPM dependencies"
+
+# For large features, break into smaller commits
+git commit -m "feat: add initial cleanup logic"
+git commit -m "feat: integrate UI progress indicator"
+git commit -m "fix: correct sandbox permission issue"
+git commit -m "ui: polish animation timing for scan button"
+```
+
+#### Merge Strategy
+
+```bash
+# Merge completed features to main
+git checkout main
+git merge develop
+git push origin main
+
+# Continue development on develop
+git checkout develop
 ```
 
 ---
