@@ -7,7 +7,6 @@ struct ContentView: View {
     @State private var selection: Folder? = .scan
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showShortcuts = false
-    @State private var isNavigating = false
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -23,15 +22,14 @@ struct ContentView: View {
                 // Modern Footer
                 modernSidebarFooter
             }
-            .frame(minWidth: 240)
             .background(
                 ZStack {
                     // Dynamic background gradient
                     LinearGradient(
                         colors: [
-                            Color.blue.opacity(0.05),
-                            Color.cyan.opacity(0.02),
-                            Color.clear
+                            AppColors.primaryBlue.opacity(0.05),
+                            AppColors.primaryLightBlue.opacity(0.02),
+                            AppColors.systemClear
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
@@ -40,9 +38,9 @@ struct ContentView: View {
                     // Subtle mesh overlay
                     RadialGradient(
                         colors: [
-                            sidebarGradientColors[0].opacity(0.08),
-                            sidebarGradientColors[1].opacity(0.04),
-                            Color.clear
+                            AppColors.primaryBlue.opacity(0.08),
+                            AppColors.primaryLightBlue.opacity(0.04),
+                            AppColors.systemClear
                         ],
                         center: .topTrailing,
                         startRadius: 50,
@@ -90,18 +88,6 @@ struct ContentView: View {
     }
     
     
-    // MARK: - Unified Color Scheme
-    private var primaryGradientColors: [Color] {
-        [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)] // Blue to light blue
-    }
-    
-    private var accentGradientColors: [Color] {
-        [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)] // Maroon red
-    }
-    
-    private var sidebarGradientColors: [Color] {
-        primaryGradientColors
-    }
     
     // MARK: - Modern Sidebar Header
     private var modernSidebarHeader: some View {
@@ -116,7 +102,7 @@ struct ContentView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: sidebarGradientColors,
+                                colors: AppColors.primaryGradient,
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -155,7 +141,9 @@ struct ContentView: View {
     // MARK: - Modern Navigation Item
     private func modernNavigationItem(folder: Folder) -> some View {
         Button(action: {
-            navigateToFolder(folder)
+            // Direct navigation without delays
+            FeedbackManager.shared.selection()
+            selection = folder
         }) {
             HStack(spacing: 12) {
                 ZStack {
@@ -211,8 +199,6 @@ struct ContentView: View {
                             )
                         )
                         .frame(width: 6, height: 6)
-                        .scaleEffect(isNavigating ? 1.2 : 1.0)
-                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isNavigating)
                 }
             }
             .padding(.horizontal, 12)
@@ -250,8 +236,6 @@ struct ContentView: View {
             )
         }
         .buttonStyle(.plain)
-        .disabled(isNavigating) // Prevent multiple taps
-        .opacity(isNavigating && selection != folder ? 0.6 : 1.0)
     }
     
     // MARK: - Modern Sidebar Footer
@@ -294,32 +278,6 @@ struct ContentView: View {
         .padding(.bottom, 12)
     }
     
-    // MARK: - Navigation Functions
-    private func navigateToFolder(_ folder: Folder) {
-        // Prevent multiple rapid taps
-        guard !isNavigating else { return }
-        
-        // If already selected, don't do anything
-        guard selection != folder else { return }
-        
-        isNavigating = true
-        
-        // Provide immediate haptic feedback
-        FeedbackManager.shared.selection()
-        
-        // Update selection immediately for instant visual feedback
-        selection = folder
-        
-        // Smooth animation for visual elements
-        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-            // This will trigger UI updates
-        }
-        
-        // Reset navigation flag after a shorter delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            isNavigating = false
-        }
-    }
 }
 
 
@@ -391,10 +349,10 @@ enum Folder: String, CaseIterable, Identifiable {
     
     var gradientColors: [Color] {
         switch self {
-        case .scan: return [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)]
-        case .results: return [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)]
-        case .settings: return [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)]
-        case .about: return [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)]
+        case .scan: return AppColors.primaryGradient
+        case .results: return AppColors.accentGradient
+        case .settings: return AppColors.primaryGradient
+        case .about: return AppColors.primaryGradient
         }
     }
 }

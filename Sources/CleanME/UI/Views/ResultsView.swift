@@ -49,7 +49,7 @@ struct ResultsView: View {
     var body: some View {
         ZStack {
             // Dynamic Background with Mesh Gradient
-            backgroundGradient
+            ModernBackgroundGradient(isActive: selectedCount > 0)
             
             VStack(spacing: 0) {
                 // Modern Header with Glass Morphism
@@ -115,56 +115,31 @@ struct ResultsView: View {
         }
     }
     
-    // MARK: - Dynamic Background
-    private var backgroundGradient: some View {
-        ZStack {
-            // Base gradient
-            LinearGradient(
-                colors: [
-                    Color.blue.opacity(0.1),
-                    Color(red: 0.4, green: 0.6, blue: 1.0).opacity(0.05),
-                    Color.clear
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            
-            // Animated mesh overlay based on results count
-            RadialGradient(
-                colors: [
-                    selectedCount > 0 ? Color(red: 0.8, green: 0.2, blue: 0.3).opacity(0.15) : Color.blue.opacity(0.15),
-                    selectedCount > 0 ? Color(red: 0.6, green: 0.1, blue: 0.2).opacity(0.08) : Color(red: 0.4, green: 0.6, blue: 1.0).opacity(0.08),
-                    Color.clear
-                ],
-                center: .topTrailing,
-                startRadius: 100,
-                endRadius: 400
-            )
-            .animation(.easeInOut(duration: 1.2), value: selectedCount)
-        }
-        .ignoresSafeArea()
-    }
-    
     // MARK: - Modern Header View
     private var modernHeaderView: some View {
         VStack(spacing: 16) {
             // Header Title with Logo
-            HStack(spacing: 12) {
-                AppLogoView(size: 28)
-                
+            HStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Scan Results")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.primary, .secondary],
-                                startPoint: .leading,
-                                endPoint: .trailing
+                    HStack(spacing: 8) {
+                        AppLogoView(size: 32)
+                        
+                        Text("Scan Results")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: AppColors.primaryGradient,
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
                             )
-                        )
+                        
+                        Image(systemName: "sparkles")
+                            .font(.caption)
+                            .foregroundStyle(AppColors.primaryLightBlue)
+                    }
                     
-                    Text("\(scanEngine.scanResults.count) files found • \(scanEngine.totalSize.formatBytes()) total")
+                    Text(scanEngine.scanResults.isEmpty ? "No scan results available" : "\(scanEngine.scanResults.count) files found")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
@@ -176,7 +151,7 @@ struct ResultsView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 3), spacing: 16) {
                 modernStatsCard(
                     icon: "doc.fill",
-                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
+                    gradient: AppColors.primaryGradient,
                     title: "\(scanEngine.scanResults.count)",
                     subtitle: "Total Files",
                     description: "Files found in scan"
@@ -184,7 +159,7 @@ struct ResultsView: View {
                 
                 modernStatsCard(
                     icon: "checkmark.circle.fill",
-                    gradient: selectedCount > 0 ? [.green, .mint] : [.gray, .secondary], // Keep success colors
+                    gradient: selectedCount > 0 ? AppColors.successGradient : [AppColors.systemGray, AppColors.systemSecondary],
                     title: "\(selectedCount)",
                     subtitle: "Selected",
                     description: selectedCount > 0 ? "Ready for cleanup" : "No files selected"
@@ -192,7 +167,7 @@ struct ResultsView: View {
                 
                 modernStatsCard(
                     icon: "internaldrive.fill",
-                    gradient: selectedCount > 0 ? [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)] : [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
+                    gradient: selectedCount > 0 ? AppColors.accentGradient : AppColors.primaryGradient,
                     title: (selectedCount > 0 ? selectedSize : scanEngine.totalSize).formatBytes(),
                     subtitle: selectedCount > 0 ? "Selected Size" : "Total Size",
                     description: selectedCount > 0 ? "Space to be freed" : "Total space used"
@@ -1155,7 +1130,7 @@ struct ResultsView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.orange, .red],
+                                colors: AppColors.primaryGradient,
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1653,55 +1628,6 @@ enum SortOrder: CaseIterable {
         case .size: return "Size"
         case .date: return "Date Modified"
         case .type: return "Type"
-        }
-    }
-}
-
-enum ToastType {
-    case success, warning, error
-    
-    var color: Color {
-        switch self {
-        case .success: return .green
-        case .warning: return .orange
-        case .error: return .red
-        }
-    }
-    
-    var icon: String {
-        switch self {
-        case .success: return "checkmark.circle.fill"
-        case .warning: return "exclamationmark.triangle.fill"
-        case .error: return "xmark.circle.fill"
-        }
-    }
-}
-
-// MARK: - Toast View
-struct ToastView: View {
-    let message: String
-    let type: ToastType
-    
-    var body: some View {
-        VStack {
-            HStack(spacing: 12) {
-                Image(systemName: type.icon)
-                    .font(.title3)
-                    .foregroundColor(type.color)
-                
-                Text(message)
-                    .font(.body)
-                    .foregroundColor(.primary)
-                
-                Spacer()
-            }
-            .padding()
-            .background(Color(.controlBackgroundColor))
-            .cornerRadius(12)
-            .shadow(radius: 8)
-            .padding()
-            
-            Spacer()
         }
     }
 }

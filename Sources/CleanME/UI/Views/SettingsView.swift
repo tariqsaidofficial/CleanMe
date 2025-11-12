@@ -167,20 +167,25 @@ struct SettingsView: View {
     private var modernHeaderView: some View {
         VStack(spacing: 16) {
             // Header Title with Logo
-            HStack(spacing: 12) {
-                AppLogoView(size: 28)
-                
+            HStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Settings")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
-                                startPoint: .leading,
-                                endPoint: .trailing
+                    HStack(spacing: 8) {
+                        AppLogoView(size: 32)
+                        
+                        Text("Settings")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: AppColors.primaryGradient,
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
                             )
-                        )
+                        
+                        Image(systemName: "sparkles")
+                            .font(.caption)
+                            .foregroundStyle(AppColors.primaryLightBlue)
+                    }
                     
                     Text("Customize your CleanME experience")
                         .font(.subheadline)
