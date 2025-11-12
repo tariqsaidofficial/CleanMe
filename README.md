@@ -11,8 +11,6 @@
 [![Xcode](https://img.shields.io/badge/Xcode-15.0+-blue.svg?style=for-the-badge&logo=xcode&logoColor=white)](https://developer.apple.com/xcode/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg?style=for-the-badge)](LICENSE)
 
-[![Coming Soon on App Store](https://www.nicepng.com/png/detail/4-47446_app-store-coming-soon-coming-soon-on-appstore.png)](https://apps.apple.com)
-
 [![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey.svg?style=flat-square)](https://www.apple.com/macos/)
 [![Architecture](https://img.shields.io/badge/Architecture-Apple%20Silicon%20%7C%20Intel-red.svg?style=flat-square)](https://www.apple.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme/badge)](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme)
@@ -23,7 +21,7 @@
 
 **CleanME** is a powerful, native macOS application designed to safely and transparently clean cache and log files, optimize storage space, and boost system performance—all while maintaining complete system integrity.
 
-[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Usage](#-usage) • [Privacy](#-privacy) • [Roadmap](#-roadmap)
+[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Usage](#-usage) • [Privacy](#-privacy) • [Roadmap](#-roadmap) • <img src="Sources/CleanME/Resources/Images/coming-soon-png_47446.png" alt="Coming Soon on App Store" width="120" height="40"/>
 
 ---
 
@@ -47,6 +45,9 @@
 
 ### Credits & Branding
 ![Credits & Branding](docs/screenshots/Credits.png)
+
+### Light/Dark Mode Support
+![Light/Dark Mode](docs/screenshots/light_dark_mode.jpg)
 
 *Screenshots showcase CleanME's modern macOS design with glass morphism effects, professional branding, and intuitive user interface.*
 
