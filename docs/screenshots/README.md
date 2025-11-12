@@ -9,7 +9,7 @@ CleanME application screenshots showcasing modern macOS design.
 3. **settings.png** - Settings panel
 4. **About.png** - About view
 5. **Credits.png** - Credits and branding
-6. **light_dark_mode.jpg** - Light/Dark mode comparison
+6. **light_dark_mode.png** - Light/Dark mode comparison
 
 ## Usage
 
