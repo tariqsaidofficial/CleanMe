@@ -5,7 +5,6 @@ struct ContentView: View {
     @EnvironmentObject var themeManager: ThemeManager
     @StateObject private var scanEngine = ScanEngine()
     @State private var selection: Folder? = .scan
-    @State private var searchText = ""
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showShortcuts = false
     @State private var isNavigating = false
@@ -66,36 +65,6 @@ struct ContentView: View {
                     ))
                     .animation(.easeInOut(duration: 0.3), value: folder)
                     .id(folder.rawValue) // Force view refresh
-                    .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            Button(action: toggleSidebar) {
-                                Image(systemName: "sidebar.leading")
-                            }
-                        }
-                        
-                        ToolbarItemGroup {
-                            Button(action: startScan) {
-                                Image(systemName: "play.circle")
-                            }
-                            .help("Start Scan")
-                            
-                            Button(action: deleteSelected) {
-                                Image(systemName: "trash")
-                            }
-                            .help("Delete Selected")
-                            .disabled(scanEngine.scanResults.isEmpty)
-                            
-                            Button(action: exportResults) {
-                                Image(systemName: "square.and.arrow.up")
-                            }
-                            .help("Export Results")
-                            .disabled(scanEngine.scanResults.isEmpty)
-                            
-                            Spacer()
-                            
-                            SearchField(text: $searchText)
-                        }
-                    }
             } else {
                 PlaceholderView()
             }
@@ -120,37 +89,18 @@ struct ContentView: View {
         }
     }
     
-    private func toggleSidebar() {
-        FeedbackManager.shared.selection()
-        columnVisibility = columnVisibility == .all ? .detailOnly : .all
+    
+    // MARK: - Unified Color Scheme
+    private var primaryGradientColors: [Color] {
+        [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)] // Blue to light blue
     }
     
-    private func startScan() {
-        FeedbackManager.shared.trigger(.levelChange)
-        Task {
-            await scanEngine.performFullScan(selectedTypes: Set(["Cache Files", "Log Files", "Temporary Files"])) { _, _ in }
-        }
+    private var accentGradientColors: [Color] {
+        [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)] // Maroon red
     }
     
-    private func deleteSelected() {
-        FeedbackManager.shared.delete()
-        // Handle delete action
-    }
-    
-    private func exportResults() {
-        FeedbackManager.shared.success()
-        // Handle export action
-    }
-    
-    // MARK: - Sidebar Gradient Colors
     private var sidebarGradientColors: [Color] {
-        switch selection {
-        case .scan: return [.blue, .cyan]
-        case .results: return [.orange, .yellow]
-        case .settings: return [.purple, .pink]
-        case .about: return [.green, .mint]
-        case .none: return [.blue, .cyan]
-        }
+        primaryGradientColors
     }
     
     // MARK: - Modern Sidebar Header
@@ -372,30 +322,6 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Search Field
-struct SearchField: View {
-    @Binding var text: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.secondary)
-            TextField("Search...", text: $text)
-                .textFieldStyle(.plain)
-                .frame(width: 200)
-            if !text.isEmpty {
-                Button(action: { text = "" }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.secondary)
-                }
-                .buttonStyle(.plain)
-            }
-        }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 4)
-        .background(Color(nsColor: .controlBackgroundColor))
-    }
-}
 
 // MARK: - Folder Detail View
 struct FolderDetailView: View {
@@ -465,10 +391,10 @@ enum Folder: String, CaseIterable, Identifiable {
     
     var gradientColors: [Color] {
         switch self {
-        case .scan: return [.blue, .cyan]
-        case .results: return [.orange, .yellow]
-        case .settings: return [.purple, .pink]
-        case .about: return [.green, .mint]
+        case .scan: return [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)]
+        case .results: return [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)]
+        case .settings: return [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)]
+        case .about: return [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)]
         }
     }
 }

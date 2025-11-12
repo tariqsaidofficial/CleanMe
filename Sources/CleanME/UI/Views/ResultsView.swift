@@ -122,7 +122,7 @@ struct ResultsView: View {
             LinearGradient(
                 colors: [
                     Color.blue.opacity(0.1),
-                    Color.cyan.opacity(0.05),
+                    Color(red: 0.4, green: 0.6, blue: 1.0).opacity(0.05),
                     Color.clear
                 ],
                 startPoint: .topLeading,
@@ -132,8 +132,8 @@ struct ResultsView: View {
             // Animated mesh overlay based on results count
             RadialGradient(
                 colors: [
-                    selectedCount > 0 ? Color.orange.opacity(0.15) : Color.blue.opacity(0.15),
-                    selectedCount > 0 ? Color.red.opacity(0.08) : Color.cyan.opacity(0.08),
+                    selectedCount > 0 ? Color(red: 0.8, green: 0.2, blue: 0.3).opacity(0.15) : Color.blue.opacity(0.15),
+                    selectedCount > 0 ? Color(red: 0.6, green: 0.1, blue: 0.2).opacity(0.08) : Color(red: 0.4, green: 0.6, blue: 1.0).opacity(0.08),
                     Color.clear
                 ],
                 center: .topTrailing,
@@ -176,7 +176,7 @@ struct ResultsView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 3), spacing: 16) {
                 modernStatsCard(
                     icon: "doc.fill",
-                    gradient: [.blue, .cyan],
+                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                     title: "\(scanEngine.scanResults.count)",
                     subtitle: "Total Files",
                     description: "Files found in scan"
@@ -184,7 +184,7 @@ struct ResultsView: View {
                 
                 modernStatsCard(
                     icon: "checkmark.circle.fill",
-                    gradient: selectedCount > 0 ? [.green, .mint] : [.gray, .secondary],
+                    gradient: selectedCount > 0 ? [.green, .mint] : [.gray, .secondary], // Keep success colors
                     title: "\(selectedCount)",
                     subtitle: "Selected",
                     description: selectedCount > 0 ? "Ready for cleanup" : "No files selected"
@@ -192,7 +192,7 @@ struct ResultsView: View {
                 
                 modernStatsCard(
                     icon: "internaldrive.fill",
-                    gradient: selectedCount > 0 ? [.orange, .yellow] : [.blue, .cyan],
+                    gradient: selectedCount > 0 ? [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)] : [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                     title: (selectedCount > 0 ? selectedSize : scanEngine.totalSize).formatBytes(),
                     subtitle: selectedCount > 0 ? "Selected Size" : "Total Size",
                     description: selectedCount > 0 ? "Space to be freed" : "Total space used"
@@ -399,7 +399,7 @@ struct ResultsView: View {
                 modernActionButton(
                     title: selectedCount == filteredResults.count ? "Deselect All" : "Select All",
                     icon: selectedCount == filteredResults.count ? "circle" : "checkmark.circle.fill",
-                    gradient: [.blue, .cyan],
+                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                     action: toggleSelectAll,
                     id: "select_all"
                 )
@@ -410,7 +410,7 @@ struct ResultsView: View {
                 modernActionButton(
                     title: "Clean All",
                     icon: "sparkles",
-                    gradient: [.orange, .yellow],
+                    gradient: [.orange, .yellow], // Keep warning colors
                     action: {
                         selectedItems = Set(filteredResults.map { $0.id })
                         showingDeletionConfirmation = true
@@ -423,7 +423,7 @@ struct ResultsView: View {
                 modernActionButton(
                     title: "Delete Selected",
                     icon: "trash",
-                    gradient: [.red, .pink],
+                    gradient: [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)], // Maroon red for danger
                     action: { showingDeletionConfirmation = true },
                     id: "delete_selected",
                     isDisabled: selectedItems.isEmpty
@@ -433,7 +433,7 @@ struct ResultsView: View {
                 modernActionButton(
                     title: "Export",
                     icon: "square.and.arrow.up",
-                    gradient: [.purple, .blue],
+                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                     action: { showingExportSheet = true },
                     id: "export",
                     isDisabled: filteredResults.isEmpty

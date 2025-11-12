@@ -22,7 +22,7 @@ struct SettingsView: View {
                         // Modern Appearance Section
                         modernSettingsSection(
                             icon: "paintbrush.fill",
-                            gradient: [.purple, .pink],
+                            gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                             title: "Appearance",
                             subtitle: "Customize the look and feel"
                         ) {
@@ -32,7 +32,7 @@ struct SettingsView: View {
                         // Modern General Section
                         modernSettingsSection(
                             icon: "gearshape.fill",
-                            gradient: [.blue, .cyan],
+                            gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                             title: "General",
                             subtitle: "App behavior and preferences"
                         ) {
@@ -41,7 +41,7 @@ struct SettingsView: View {
                                     title: "Enable Logging",
                                     description: "Record app activities for debugging",
                                     icon: "doc.text.fill",
-                                    gradient: [.green, .mint],
+                                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                                     binding: $appSettings.enableLogging
                                 )
                                 
@@ -49,7 +49,7 @@ struct SettingsView: View {
                                     title: "Confirm Before Delete",
                                     description: "Show confirmation dialog before deleting files",
                                     icon: "exclamationmark.triangle.fill",
-                                    gradient: [.orange, .yellow],
+                                    gradient: [.orange, .yellow], // Keep warning colors
                                     binding: $appSettings.confirmBeforeDelete
                                 )
                                 
@@ -57,7 +57,7 @@ struct SettingsView: View {
                                     title: "Show File Preview",
                                     description: "Display file details in results",
                                     icon: "eye.fill",
-                                    gradient: [.blue, .purple],
+                                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                                     binding: $appSettings.showFilePreview
                                 )
                                 
@@ -65,7 +65,7 @@ struct SettingsView: View {
                                     title: "Auto Refresh Results",
                                     description: "Automatically update scan results",
                                     icon: "arrow.clockwise",
-                                    gradient: [.cyan, .blue],
+                                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                                     binding: $appSettings.autoRefreshResults
                                 )
                                 
@@ -73,7 +73,7 @@ struct SettingsView: View {
                                     title: "Enable Haptic Feedback",
                                     description: "Feel vibrations for actions",
                                     icon: "hand.tap.fill",
-                                    gradient: [.pink, .purple],
+                                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                                     binding: $appSettings.enableHapticFeedback
                                 )
                             }
@@ -82,7 +82,7 @@ struct SettingsView: View {
                         // Modern Security Section
                         modernSettingsSection(
                             icon: "shield.fill",
-                            gradient: [.green, .mint],
+                            gradient: [.green, .mint], // Keep success colors for security
                             title: "Security",
                             subtitle: "Protect your system and data"
                         ) {
@@ -91,7 +91,7 @@ struct SettingsView: View {
                                     title: "Safe Mode",
                                     description: "Prevent deletion of critical system files",
                                     icon: "lock.shield.fill",
-                                    gradient: [.green, .mint],
+                                    gradient: [.green, .mint], // Keep success colors
                                     binding: $appSettings.enableSafeMode
                                 )
                                 
@@ -99,7 +99,7 @@ struct SettingsView: View {
                                     title: "Require Admin for System Files",
                                     description: "Ask for password when deleting system files",
                                     icon: "key.fill",
-                                    gradient: [.orange, .red],
+                                    gradient: [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)], // Maroon red for critical
                                     binding: $appSettings.requireAdminForSystemFiles
                                 )
                                 
@@ -107,7 +107,7 @@ struct SettingsView: View {
                                     title: "Create Backup Before Delete",
                                     description: "Keep a copy before removing files",
                                     icon: "archivebox.fill",
-                                    gradient: [.blue, .cyan],
+                                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                                     binding: $appSettings.createBackupBeforeDelete
                                 )
                             }
@@ -139,8 +139,8 @@ struct SettingsView: View {
             // Base gradient
             LinearGradient(
                 colors: [
-                    Color.purple.opacity(0.1),
-                    Color.pink.opacity(0.05),
+                    Color.blue.opacity(0.1),
+                    Color(red: 0.4, green: 0.6, blue: 1.0).opacity(0.05),
                     Color.clear
                 ],
                 startPoint: .topLeading,
@@ -150,8 +150,8 @@ struct SettingsView: View {
             // Animated mesh overlay
             RadialGradient(
                 colors: [
-                    Color.purple.opacity(0.15),
-                    Color.pink.opacity(0.08),
+                    Color.blue.opacity(0.15),
+                    Color(red: 0.4, green: 0.6, blue: 1.0).opacity(0.08),
                     Color.clear
                 ],
                 center: .topTrailing,
@@ -176,7 +176,7 @@ struct SettingsView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
