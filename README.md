@@ -5,7 +5,7 @@
 ### *The Ultimate macOS Storage Optimizer*
 
 [![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tariqsaidofficial/CleanMe/releases)
-[![macOS](https://img.shields.io/badge/macOS-12.0+-blue.svg?style=for-the-badge&logo=apple&logoColor=white)](https://www.apple.com/macos/)
+[![macOS](https://img.shields.io/badge/macOS-13.0+-blue.svg?style=for-the-badge&logo=apple&logoColor=white)](https://www.apple.com/macos/)
 [![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-3.0+-blue.svg?style=for-the-badge&logo=swift&logoColor=white)](https://developer.apple.com/xcode/swiftui/)
 [![Xcode](https://img.shields.io/badge/Xcode-15.0+-blue.svg?style=for-the-badge&logo=xcode&logoColor=white)](https://developer.apple.com/xcode/)
@@ -114,7 +114,7 @@
 
 ### Requirements
 
-- **macOS**: 12.0 (Monterey) or later
+- **macOS**: 13.0 (Ventura) or later
 - **Xcode**: 15.0 or later
 - **Swift**: 5.9 or later
 - **Architecture**: Apple Silicon (M1/M2/M3) or Intel

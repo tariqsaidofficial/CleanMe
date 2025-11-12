@@ -20,7 +20,7 @@ cat > .build/debug/Info.plist << 'PLIST'
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>LSMinimumSystemVersion</key>
-    <string>12.0</string>
+    <string>13.0</string>
 </dict>
 </plist>
 PLIST

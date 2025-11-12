@@ -93,7 +93,7 @@ git push origin v1.0.0
 - API documentation
 
 ### 🔧 Technical Details
-- Minimum macOS version: 12.0+
+- Minimum macOS version: 13.0+
 - Architecture: Universal (Apple Silicon + Intel)
 - Build number: [build_number]
 

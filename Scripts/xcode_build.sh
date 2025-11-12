@@ -32,7 +32,7 @@ cat > "${APP_BUNDLE}/Contents/Info.plist" << 'EOF'
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>LSMinimumSystemVersion</key>
-    <string>12.0</string>
+    <string>13.0</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
 </dict>
