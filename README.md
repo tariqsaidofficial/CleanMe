@@ -11,6 +11,8 @@
 [![Xcode](https://img.shields.io/badge/Xcode-15.0+-blue.svg?style=for-the-badge&logo=xcode&logoColor=white)](https://developer.apple.com/xcode/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg?style=for-the-badge)](LICENSE)
 
+[![Coming Soon on App Store](https://www.nicepng.com/png/detail/4-47446_app-store-coming-soon-coming-soon-on-appstore.png)](https://apps.apple.com)
+
 [![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey.svg?style=flat-square)](https://www.apple.com/macos/)
 [![Architecture](https://img.shields.io/badge/Architecture-Apple%20Silicon%20%7C%20Intel-red.svg?style=flat-square)](https://www.apple.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme/badge)](https://www.codefactor.io/repository/github/tariqsaidofficial/cleanme)
@@ -31,17 +33,20 @@
 
 <div align="center">
 
-### Main Interface
-![Main Interface](docs/screenshots/main-interface.png)
+### System Scan Interface
+![System Scan](docs/screenshots/system-scan.png)
 
 ### Scan Results
 ![Scan Results](docs/screenshots/scan-results.png)
 
 ### Settings Panel
-![Settings Panel](docs/screenshots/settings-panel.png)
+![Settings Panel](docs/screenshots/settings.png)
 
 ### About & Credits
-![About & Credits](docs/screenshots/about-credits.png)
+![About & Credits](docs/screenshots/About.png)
+
+### Credits & Branding
+![Credits & Branding](docs/screenshots/Credits.png)
 
 *Screenshots showcase CleanME's modern macOS design with glass morphism effects, professional branding, and intuitive user interface.*
 
