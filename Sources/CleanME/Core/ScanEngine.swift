@@ -1,5 +1,34 @@
 import Foundation
 
+// MARK: - AsyncSemaphore for Concurrency Control
+actor AsyncSemaphore {
+    private var value: Int
+    private var waiters: [CheckedContinuation<Void, Never>] = []
+    
+    init(value: Int) {
+        self.value = value
+    }
+    
+    func wait() async {
+        if value > 0 {
+            value -= 1
+        } else {
+            await withCheckedContinuation { continuation in
+                waiters.append(continuation)
+            }
+        }
+    }
+    
+    func signal() {
+        if waiters.isEmpty {
+            value += 1
+        } else {
+            let waiter = waiters.removeFirst()
+            waiter.resume()
+        }
+    }
+}
+
 class ScanEngine: ObservableObject {
     @Published var scanResults: [CleanupItem] = []
     @Published var isScanning = false
@@ -374,23 +403,58 @@ class ScanEngine: ObservableObject {
         var totalSize: Int64 = 0
         
         let totalItems = items.count
+        let batchSize = min(50, max(1, totalItems / 20)) // Dynamic batch size: 50 files max, or 5% of total
+        let totalBatches = (totalItems + batchSize - 1) / batchSize
         
-        for (index, item) in items.enumerated() {
-            let progress = Double(index) / Double(totalItems)
-            await progressCallback(progress, "Deleting \(item.fileName)...")
+        await progressCallback(0.0, "Starting deletion of \(totalItems) files...")
+        
+        for batchIndex in 0..<totalBatches {
+            let startIndex = batchIndex * batchSize
+            let endIndex = min(startIndex + batchSize, totalItems)
+            let batch = Array(items[startIndex..<endIndex])
             
-            do {
-                let success = try await deleteItemSafely(item)
-                if success {
-                    deletedItems.append(item)
-                    totalSize += item.fileSize
+            let progress = Double(batchIndex) / Double(totalBatches)
+            await progressCallback(progress, "Processing batch \(batchIndex + 1)/\(totalBatches) (\(batch.count) files)...")
+            
+            // Process batch concurrently with limited concurrency
+            await withTaskGroup(of: (CleanupItem, Result<Bool, Error>).self) { group in
+                let semaphore = AsyncSemaphore(value: 10) // Limit to 10 concurrent operations
+                
+                for item in batch {
+                    group.addTask {
+                        await semaphore.wait()
+                        defer { 
+                            Task { await semaphore.signal() }
+                        }
+                        
+                        do {
+                            let success = try await self.deleteItemSafely(item)
+                            return (item, .success(success))
+                        } catch {
+                            return (item, .failure(error))
+                        }
+                    }
                 }
-            } catch {
-                failedItems.append((item, error))
+                
+                for await (item, result) in group {
+                    switch result {
+                    case .success(let success):
+                        if success {
+                            deletedItems.append(item)
+                            totalSize += item.fileSize
+                        }
+                    case .failure(let error):
+                        failedItems.append((item, error))
+                    }
+                }
             }
+            
+            // Update progress more frequently for large batches
+            let currentProgress = Double(endIndex) / Double(totalItems)
+            await progressCallback(currentProgress, "Deleted \(deletedItems.count)/\(totalItems) files...")
         }
         
-        await progressCallback(1.0, "Deletion completed")
+        await progressCallback(1.0, "Deletion completed: \(deletedItems.count) files deleted")
         
         return DeletionResult(
             deletedItems: deletedItems,
@@ -425,37 +489,39 @@ class ScanEngine: ObservableObject {
             try await createBackup(for: item)
         }
         
-        // Perform deletion
-        return try await Task.detached {
-            do {
-                if item.fileType == .trash {
-                    // Permanently delete trash items
-                    try fileManager.removeItem(atPath: filePath)
-                } else {
-                    // Move to trash for other items
-                    let trashURL = try fileManager.url(for: .trashDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                    let sourceURL = URL(fileURLWithPath: filePath)
-                    let fileName = sourceURL.lastPathComponent
-                    let destinationURL = trashURL.appendingPathComponent(fileName)
-                    
-                    // Handle duplicate names in trash
-                    var finalDestinationURL = destinationURL
-                    var counter = 1
-                    while fileManager.fileExists(atPath: finalDestinationURL.path) {
-                        let nameWithoutExtension = (fileName as NSString).deletingPathExtension
-                        let pathExtension = (fileName as NSString).pathExtension
-                        let newName = pathExtension.isEmpty ? "\(nameWithoutExtension)_\(counter)" : "\(nameWithoutExtension)_\(counter).\(pathExtension)"
-                        finalDestinationURL = trashURL.appendingPathComponent(newName)
-                        counter += 1
+        // Perform deletion with optimized I/O
+        return try await withCheckedThrowingContinuation { continuation in
+            DispatchQueue.global(qos: .userInitiated).async { [filePath] in
+                let localFileManager = FileManager.default
+                do {
+                    if item.fileType == .trash {
+                        // Permanently delete trash items
+                        try localFileManager.removeItem(atPath: filePath)
+                    } else {
+                        // Move to trash for other items
+                        let trashURL = try localFileManager.url(for: .trashDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                        let sourceURL = URL(fileURLWithPath: filePath)
+                        let fileName = sourceURL.lastPathComponent
+                        let destinationURL = trashURL.appendingPathComponent(fileName)
+                        
+                        // Handle duplicate names in trash with faster approach
+                        var finalDestinationURL = destinationURL
+                        if localFileManager.fileExists(atPath: finalDestinationURL.path) {
+                            let timestamp = Int(Date().timeIntervalSince1970)
+                            let nameWithoutExtension = (fileName as NSString).deletingPathExtension
+                            let pathExtension = (fileName as NSString).pathExtension
+                            let newName = pathExtension.isEmpty ? "\(nameWithoutExtension)_\(timestamp)" : "\(nameWithoutExtension)_\(timestamp).\(pathExtension)"
+                            finalDestinationURL = trashURL.appendingPathComponent(newName)
+                        }
+                        
+                        try localFileManager.moveItem(at: sourceURL, to: finalDestinationURL)
                     }
-                    
-                    try fileManager.moveItem(at: sourceURL, to: finalDestinationURL)
+                    continuation.resume(returning: true)
+                } catch {
+                    continuation.resume(throwing: error)
                 }
-                return true
-            } catch {
-                throw error
             }
-        }.value
+        }
     }
     
     private func shouldCreateBackup(for item: CleanupItem) -> Bool {
