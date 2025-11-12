@@ -53,16 +53,34 @@ struct ContentView: View {
             .animation(.easeInOut(duration: 0.3), value: selection)
         } detail: {
             if let folder = selection {
-                FolderDetailView(folder: folder)
-                    .environmentObject(scanEngine)
-                    .accentColor(themeManager.current.accentColor)
-                    .preferredColorScheme(themeManager.current.colorScheme)
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .trailing).combined(with: .opacity),
-                        removal: .move(edge: .leading).combined(with: .opacity)
-                    ))
-                    .animation(.easeInOut(duration: 0.3), value: folder)
-                    .id(folder.rawValue) // Force view refresh
+                Group {
+                    switch folder {
+                    case .scan:
+                        ScanView(onScanComplete: {
+                            // Auto-navigate to Results when scan completes
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                selection = .results
+                            }
+                            FeedbackManager.shared.success()
+                        })
+                        .environmentObject(scanEngine)
+                    case .results:
+                        ResultsView()
+                            .environmentObject(scanEngine)
+                    case .settings:
+                        SettingsView()
+                    case .about:
+                        AboutView()
+                    }
+                }
+                .accentColor(themeManager.current.accentColor)
+                .preferredColorScheme(themeManager.current.colorScheme)
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing).combined(with: .opacity),
+                    removal: .move(edge: .leading).combined(with: .opacity)
+                ))
+                .animation(.easeInOut(duration: 0.3), value: folder)
+                .id(folder.rawValue) // Force view refresh
             } else {
                 PlaceholderView()
             }
@@ -281,29 +299,6 @@ struct ContentView: View {
 }
 
 
-// MARK: - Folder Detail View
-struct FolderDetailView: View {
-    let folder: Folder
-    @EnvironmentObject var scanEngine: ScanEngine
-    
-    var body: some View {
-        Group {
-            switch folder {
-            case .scan:
-                ScanView()
-                    .environmentObject(scanEngine)
-            case .results:
-                ResultsView()
-                    .environmentObject(scanEngine)
-            case .settings:
-                SettingsView()
-            case .about:
-                AboutView()
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
 
 // MARK: - Placeholder View
 struct PlaceholderView: View {

@@ -12,6 +12,9 @@ struct ScanView: View {
     @State private var hoveredCard: String? = nil
     @State private var hoveredButton: String? = nil
     
+    // Callback for navigation
+    var onScanComplete: (() -> Void)? = nil
+    
     var body: some View {
         ZStack {
             // Dynamic Background with Mesh Gradient
@@ -726,6 +729,11 @@ struct ScanView: View {
                     
                     if progress == 1.0 {
                         FeedbackManager.combinedFeedback(haptic: .levelChange, flash: true)
+                        
+                        // Auto-navigate to Results after scan completion
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            onScanComplete?()
+                        }
                     }
                 }
             }

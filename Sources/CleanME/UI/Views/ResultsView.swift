@@ -388,7 +388,11 @@ struct ResultsView: View {
                     gradient: [.orange, .yellow], // Keep warning colors
                     action: {
                         selectedItems = Set(filteredResults.map { $0.id })
-                        showingDeletionConfirmation = true
+                        if appSettings.confirmBeforeDelete {
+                            showingDeletionConfirmation = true
+                        } else {
+                            performDeletion()
+                        }
                     },
                     id: "clean_all",
                     isDisabled: filteredResults.isEmpty
@@ -399,7 +403,13 @@ struct ResultsView: View {
                     title: "Delete Selected",
                     icon: "trash",
                     gradient: [Color(red: 0.8, green: 0.2, blue: 0.3), Color(red: 0.6, green: 0.1, blue: 0.2)], // Maroon red for danger
-                    action: { showingDeletionConfirmation = true },
+                    action: { 
+                        if appSettings.confirmBeforeDelete {
+                            showingDeletionConfirmation = true
+                        } else {
+                            performDeletion()
+                        }
+                    },
                     id: "delete_selected",
                     isDisabled: selectedItems.isEmpty
                 )
@@ -551,7 +561,11 @@ struct ResultsView: View {
                 // Clean All button
                 Button(action: {
                     selectedItems = Set(filteredResults.map { $0.id })
-                    showingDeletionConfirmation = true
+                    if appSettings.confirmBeforeDelete {
+                        showingDeletionConfirmation = true
+                    } else {
+                        performDeletion()
+                    }
                 }) {
                     HStack(spacing: 6) {
                         Image(systemName: "sparkles")
@@ -564,7 +578,13 @@ struct ResultsView: View {
                 .disabled(filteredResults.isEmpty)
                 
                 // Delete Selected button
-                Button(action: { showingDeletionConfirmation = true }) {
+                Button(action: { 
+                    if appSettings.confirmBeforeDelete {
+                        showingDeletionConfirmation = true
+                    } else {
+                        performDeletion()
+                    }
+                }) {
                     HStack(spacing: 6) {
                         Image(systemName: "trash")
                         Text("Delete Selected")
@@ -617,7 +637,11 @@ struct ResultsView: View {
                 
                 Button(role: .destructive) {
                     selectedItems = [item.id]
-                    showingDeletionConfirmation = true
+                    if appSettings.confirmBeforeDelete {
+                        showingDeletionConfirmation = true
+                    } else {
+                        performDeletion()
+                    }
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
@@ -834,7 +858,11 @@ struct ResultsView: View {
                 
                 Button(role: .destructive) {
                     selectedItems = [item.id]
-                    showingDeletionConfirmation = true
+                    if appSettings.confirmBeforeDelete {
+                        showingDeletionConfirmation = true
+                    } else {
+                        performDeletion()
+                    }
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
@@ -887,12 +915,17 @@ struct ResultsView: View {
                         )
                     )
             }
-            
             modernActionButton(
                 title: "Delete Selected",
                 icon: "trash.fill",
                 gradient: [.red, .pink],
-                action: { showingDeletionConfirmation = true },
+                action: { 
+                    if appSettings.confirmBeforeDelete {
+                        showingDeletionConfirmation = true
+                    } else {
+                        performDeletion()
+                    }
+                },
                 id: "delete_selected_bottom"
             )
         }
@@ -901,7 +934,7 @@ struct ResultsView: View {
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .strokeBorder(.white.opacity(0.2), lineWidth: 1)
+                .strokeBorder(Color.white.opacity(0.2), lineWidth: 1)
         )
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
         .padding(.horizontal, 20)
@@ -1018,7 +1051,11 @@ struct ResultsView: View {
             }
             
             Button {
-                showingDeletionConfirmation = true
+                if appSettings.confirmBeforeDelete {
+                    showingDeletionConfirmation = true
+                } else {
+                    performDeletion()
+                }
             } label: {
                 HStack {
                     Image(systemName: "trash")
