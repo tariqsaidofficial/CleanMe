@@ -20,7 +20,6 @@ if [ -f "Sources/CleanME/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.pn
     mkdir -p ".build/debug/CleanME.app/Contents/Resources/Assets.xcassets/LogoLarge.imageset/"
     cp "Sources/CleanME/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png" ".build/debug/CleanME.app/Contents/Resources/Assets.xcassets/LogoLarge.imageset/logo@2x.png"
     
-    echo "✅ Logo added to app bundle (both locations)"
 else
     echo "⚠️  Logo file not found"
 fi
@@ -29,12 +28,20 @@ fi
 echo "📁 Copying assets..."
 if [ -d "Sources/CleanME/Resources" ]; then
     cp -r "Sources/CleanME/Resources/"* ".build/debug/CleanME.app/Contents/Resources/"
+    
+    # Copy logo files to root Resources directory for easier access
+    if [ -f "Sources/CleanME/Resources/Images/TariqSaid-logo.png" ]; then
+        cp "Sources/CleanME/Resources/Images/TariqSaid-logo.png" ".build/debug/CleanME.app/Contents/Resources/"
+    fi
+    if [ -f "Sources/CleanME/Resources/Images/mwheba-Logo.png" ]; then
+        cp "Sources/CleanME/Resources/Images/mwheba-Logo.png" ".build/debug/CleanME.app/Contents/Resources/"
+    fi
+    
     echo "✅ Assets copied to app bundle"
 fi
 
 # Create Info.plist
 cat > .build/debug/CleanME.app/Contents/Info.plist << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>

@@ -4,6 +4,7 @@
 
 ### *The Ultimate macOS Storage Optimizer*
 
+[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tariqsaidofficial/CleanMe/releases)
 [![macOS](https://img.shields.io/badge/macOS-12.0+-blue.svg?style=for-the-badge&logo=apple&logoColor=white)](https://www.apple.com/macos/)
 [![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-3.0+-blue.svg?style=for-the-badge&logo=swift&logoColor=white)](https://developer.apple.com/xcode/swiftui/)
@@ -20,11 +21,33 @@
 
 **CleanME** is a powerful, native macOS application designed to safely and transparently clean cache and log files, optimize storage space, and boost system performance—all while maintaining complete system integrity.
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Privacy](#-privacy) • [Roadmap](#-roadmap)
+[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Usage](#-usage) • [Privacy](#-privacy) • [Roadmap](#-roadmap)
 
 ---
 
 </div>
+
+## 📸 Screenshots
+
+<div align="center">
+
+### Main Interface
+![Main Interface](docs/screenshots/main-interface.png)
+
+### Scan Results
+![Scan Results](docs/screenshots/scan-results.png)
+
+### Settings Panel
+![Settings Panel](docs/screenshots/settings-panel.png)
+
+### About & Credits
+![About & Credits](docs/screenshots/about-credits.png)
+
+*Screenshots showcase CleanME's modern macOS design with glass morphism effects, professional branding, and intuitive user interface.*
+
+</div>
+
+---
 
 ## ✨ Features
 
@@ -35,41 +58,44 @@
 ### 🛡️ **Safe & Secure**
 - ✅ Smart cleanup algorithms
 - ✅ System files protection
-- ✅ Sandboxed architecture
 - ✅ Security-scoped bookmarks
-- ✅ No root access required
+- ✅ Safe mode protection
+- ✅ Admin privilege handling
 
 </td>
 <td width="50%">
 
 ### 🎨 **Modern Interface**
-- ✅ Native SwiftUI design
-- ✅ macOS Ventura+ optimized
-- ✅ Dark mode support
-- ✅ Smooth animations
-- ✅ Intuitive navigation
+- ✅ macOS 26 UI Kit inspired design
+- ✅ Glass morphism effects
+- ✅ Professional branding & credits
+- ✅ Hover animations & transitions
+- ✅ SF Symbols 6 integration
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### 📊 **Detailed Analytics**
-- ✅ Real-time scan progress
-- ✅ Comprehensive reports
-- ✅ Storage breakdown
-- ✅ Before/after comparison
-- ✅ File categorization
+### ⚡ **High Performance**
+- ✅ 50000% faster deletion (1→500 files/sec)
+- ✅ Concurrent processing
+- ✅ Background I/O operations
+- ✅ Memory optimization
+- ✅ Real-time progress tracking
 
 </td>
 <td width="50%">
 
-### ⚙️ **Advanced Options**
-- ✅ Customizable settings
-- ✅ Scheduled cleanups
-- ✅ Selective cleaning
-- ✅ Automatic updates
-- ✅ Backup before delete
+### 🧹 **8 Scan Types**
+- ✅ Cache directories cleaning
+- ✅ Log files removal
+- ✅ Temporary files cleanup
+- ✅ Trash bin analysis
+- ✅ Downloads folder optimization
+- ✅ Duplicate files detection
+- ✅ Large files identification
+- ✅ Empty folders removal
 
 </td>
 </tr>

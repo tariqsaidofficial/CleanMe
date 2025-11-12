@@ -3,24 +3,24 @@ import SwiftUI
 enum AboutTab: String, CaseIterable {
     case overview = "Overview"
     case features = "Features"
-    case license = "License"
     case credits = "Credits"
+    case license = "License"
     
     var icon: String {
         switch self {
         case .overview: return "info.circle.fill"
-        case .features: return "star.circle.fill"
+        case .features: return "star.fill"
+        case .credits: return "heart.fill"
         case .license: return "doc.text.fill"
-        case .credits: return "person.2.circle.fill"
         }
     }
     
     var gradient: [Color] {
         switch self {
-        case .overview: return [.blue, .cyan]
-        case .features: return [.purple, .pink]
-        case .license: return [.orange, .yellow]
-        case .credits: return [.green, .mint]
+        case .overview: return [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)]
+        case .features: return [.orange, .yellow]
+        case .credits: return [.pink, .red]
+        case .license: return [.green, .mint]
         }
     }
 }
@@ -217,10 +217,10 @@ struct AboutView: View {
                 modernOverviewContent
             case .features:
                 modernFeaturesContent
-            case .license:
-                modernLicenseContent
             case .credits:
                 modernCreditsContent
+            case .license:
+                modernLicenseContent
             }
         }
         .padding(.horizontal, 40)
@@ -234,10 +234,14 @@ struct AboutView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             
-            Text("2025 CleanME. All rights reserved.")
-                .font(.caption)
-                .fontWeight(.medium)
-                .foregroundStyle(.secondary)
+            HStack(spacing: 4) {
+                Text("2025 CleanME - Built with")
+                Text("❤️")
+                Text("by Tariq Said")
+            }
+            .font(.caption)
+            .fontWeight(.medium)
+            .foregroundStyle(.secondary)
         }
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
@@ -602,105 +606,6 @@ struct AboutView: View {
         .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
     }
     
-    // MARK: - Modern Credits Content
-    private var modernCreditsContent: some View {
-        VStack(spacing: 16) {
-            // Credits Header
-            modernGlassCard {
-                HStack(spacing: 16) {
-                    ZStack {
-                        Circle()
-                            .fill(
-                                RadialGradient(
-                                    colors: [
-                                        Color.green.opacity(0.3),
-                                        Color.mint.opacity(0.1)
-                                    ],
-                                    center: .center,
-                                    startRadius: 10,
-                                    endRadius: 30
-                                )
-                            )
-                            .frame(width: 60, height: 60)
-                        
-                        Image(systemName: "person.2.circle.fill")
-                            .font(.system(size: 28, weight: .medium))
-                            .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.green, .mint],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: selectedTab)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Credits & Acknowledgments")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.primary)
-                        
-                        Text("Built with passion and cutting-edge technology")
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    Spacer()
-                }
-            }
-            
-            // Credits Grid
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
-                modernCreditCard(
-                    icon: "person.crop.circle.fill.badge.checkmark",
-                    gradient: [.blue, .cyan],
-                    title: "Developer",
-                    items: [
-                        "Tariq Said",
-                        "Lead Developer & Designer",
-                        "Architecture & Implementation"
-                    ]
-                )
-                
-                modernCreditCard(
-                    icon: "paintbrush.pointed.fill",
-                    gradient: [.purple, .pink],
-                    title: "Design System",
-                    items: [
-                        "macOS Human Interface Guidelines",
-                        "SF Symbols 6",
-                        "Native macOS Components"
-                    ]
-                )
-                
-                modernCreditCard(
-                    icon: "hammer.circle.fill",
-                    gradient: [.orange, .yellow],
-                    title: "Technologies",
-                    items: [
-                        "Swift 6.0 & SwiftUI",
-                        "macOS SDK 15.0+",
-                        "FileManager & Foundation APIs"
-                    ]
-                )
-                
-                modernCreditCard(
-                    icon: "wrench.and.screwdriver.fill",
-                    gradient: [.green, .mint],
-                    title: "Development Tools",
-                    items: [
-                        "Xcode 16",
-                        "Swift Package Manager",
-                        "Git & GitHub Actions"
-                    ]
-                )
-            }
-        }
-    }
-    
     private func modernCreditCard(icon: String, gradient: [Color], title: String, items: [String]) -> some View {
         VStack(spacing: 16) {
             // Header
@@ -889,10 +794,14 @@ struct AboutView: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: 4) {
-                    Text("Copyright © 2025 CleanME")
-                        .font(.caption)
-                        .fontWeight(.medium)
-                        .foregroundStyle(.secondary)
+                    HStack(spacing: 4) {
+                        Text("Built with")
+                        Text("❤️")
+                        Text("by Tariq Said")
+                    }
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundStyle(.secondary)
                     
                     Text("All rights reserved")
                         .font(.caption2)
@@ -900,6 +809,239 @@ struct AboutView: View {
                 }
             }
         }
+    }
+    
+    // MARK: - Modern Credits Content
+    private var modernCreditsContent: some View {
+        VStack(spacing: 30) {
+            // Partners Section - Side by Side
+            HStack(spacing: 20) {
+                // Developer Section
+                modernCreditsSection(
+                    title: "Developer",
+                    subtitle: "Built with ❤️ by",
+                    logoName: "TariqSaid-logo",
+                    name: "Tariq Said",
+                    description: "Full-Stack Developer & UI/UX Designer",
+                    websiteURL: "https://portfolio.dxbmark.com/",
+                    gradient: [.blue, .purple]
+                )
+                
+                // Agency Section
+                modernCreditsSection(
+                    title: "Agency Partner",
+                    subtitle: "In collaboration with",
+                    logoName: "mwheba-Logo",
+                    name: "MWHEBA Agency",
+                    description: "Digital Solutions & Creative Agency",
+                    websiteURL: "https://mwheba.com/",
+                    gradient: [.orange, .red]
+                )
+            }
+            
+            // Credits Grid - Acknowledgments, Technologies, etc.
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
+                modernCreditCard(
+                    icon: "person.fill",
+                    gradient: [.blue, Color(red: 0.4, green: 0.6, blue: 1.0)],
+                    title: "Development Team",
+                    items: [
+                        "Tariq Said - Lead Developer",
+                        "UI/UX Design & Implementation",
+                        "Core Engine Development"
+                    ]
+                )
+                
+                modernCreditCard(
+                    icon: "hammer.circle.fill",
+                    gradient: [.orange, .yellow],
+                    title: "Technologies",
+                    items: [
+                        "Swift 6.0 & SwiftUI",
+                        "macOS SDK 15.0+",
+                        "FileManager & Foundation APIs"
+                    ]
+                )
+                
+                modernCreditCard(
+                    icon: "wrench.and.screwdriver.fill",
+                    gradient: [.green, .mint],
+                    title: "Development Tools",
+                    items: [
+                        "Xcode 16",
+                        "Swift Package Manager",
+                        "Git & GitHub Actions"
+                    ]
+                )
+                
+                modernCreditCard(
+                    icon: "paintbrush.fill",
+                    gradient: [.purple, .pink],
+                    title: "Design System",
+                    items: [
+                        "SF Symbols 6",
+                        "macOS Human Interface Guidelines",
+                        "Glass Morphism & Vibrancy Effects"
+                    ]
+                )
+            }
+            
+        }
+        .padding(.vertical, 20)
+    }
+    
+    private func modernCreditsSection(title: String, subtitle: String, logoName: String, name: String, description: String, websiteURL: String, gradient: [Color]) -> some View {
+        VStack(spacing: 12) {
+            // Section Header - أصغر
+            VStack(spacing: 2) {
+                Text(title)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.primary)
+                
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            
+            // Credit Card - أصغر
+            VStack(spacing: 12) {
+                // Logo محلي
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(
+                            LinearGradient(
+                                colors: gradient.map { $0.opacity(0.1) },
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 100, height: 100)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .strokeBorder(
+                                    LinearGradient(
+                                        colors: gradient.map { $0.opacity(0.3) },
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 1
+                                )
+                        )
+                    
+                    // Try multiple paths to find the logo
+                    if let logoImage = loadLogoImage(named: logoName) {
+                        Image(nsImage: logoImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 90, height: 90)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    } else {
+                        // Fallback icon
+                        Image(systemName: name.contains("Agency") ? "building.2.fill" : "person.circle.fill")
+                            .font(.system(size: 50))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: gradient,
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                    }
+                }
+                
+                VStack(spacing: 6) {
+                    Text(name)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.primary)
+                    
+                    Text(description)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                    
+                    // Website Button - أصغر
+                    Button(action: {
+                        if let url = URL(string: websiteURL) {
+                            NSWorkspace.shared.open(url)
+                        }
+                    }) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "globe")
+                            Text("Visit Website")
+                        }
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(
+                            LinearGradient(
+                                colors: gradient,
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(16)
+                    }
+                    .buttonStyle(.plain)
+                    .scaleEffect(hoveredButton == name ? 1.05 : 1.0)
+                    .onHover { hovering in
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            hoveredButton = hovering ? name : nil
+                        }
+                    }
+                }
+            }
+            .padding(16)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .strokeBorder(.white.opacity(0.2), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+        }
+    }
+    
+    // MARK: - Logo Loading Helper
+    private func loadLogoImage(named logoName: String) -> NSImage? {
+        // Try different paths to find the logo
+        let possiblePaths = [
+            logoName,  // Direct name
+            "Images/\(logoName)",  // In Images folder
+            "\(logoName).png",  // With extension
+            "Images/\(logoName).png"  // In Images folder with extension
+        ]
+        
+        for path in possiblePaths {
+            // Try Bundle.main.image first
+            if let image = Bundle.main.image(forResource: path) {
+                return image
+            }
+            
+            // Try Bundle.main.path
+            if let imagePath = Bundle.main.path(forResource: path, ofType: nil),
+               let image = NSImage(contentsOfFile: imagePath) {
+                return image
+            }
+            
+            // Try with png extension
+            if let imagePath = Bundle.main.path(forResource: path, ofType: "png"),
+               let image = NSImage(contentsOfFile: imagePath) {
+                return image
+            }
+        }
+        
+        // Debug: Print available resources
+        if let resourcePath = Bundle.main.resourcePath {
+            print("🔍 Bundle resource path: \(resourcePath)")
+            if let contents = try? FileManager.default.contentsOfDirectory(atPath: resourcePath) {
+                print("🔍 Available resources: \(contents)")
+            }
+        }
+        
+        return nil
     }
     
     private func modernLicenseCard(icon: String, gradient: [Color], title: String, items: [String]) -> some View {

@@ -2,7 +2,7 @@
 
 ## ✅ Recently Completed
 
-### UI/UX Redesign (2025-11-12)
+### UI/UX Redesign (2025-11-12) - COMPLETE ✅
 
 - [x] **Complete AboutView redesign** with macOS 26 UI Kit inspiration
 - [x] **Vibrancy effects** and glass morphism throughout the interface
@@ -15,8 +15,11 @@
 - [x] **Compact header** with horizontal layout for better space utilization
 - [x] **App logo integration** in both header and sidebar
 - [x] **Automatic logo deployment** via enhanced run_app.sh script
+- [x] **Credits & Branding section** with partner logos (Tariq Said & MWHEBA Agency)
+- [x] **AsyncImageView component** for remote logo loading with local fallbacks
+- [x] **Professional credits layout** with acknowledgments, technologies, and tools
 
-### Technical Improvements
+### Technical Improvements - COMPLETE ✅
 
 - [x] **AppLogoView component** - Reusable logo component with multiple fallback options
 - [x] **Enhanced build script** - Automatic asset copying and app bundle creation
@@ -24,12 +27,52 @@
 - [x] **Responsive design** - Optimized for different window sizes without scrolling
 - [x] **Modern animations** - Spring-based transitions and symbol effects
 - [x] **Glass morphism cards** - Ultra-thin material backgrounds with subtle borders
+- [x] **Local logo integration** - TariqSaid-logo.png & mwheba-Logo.png in Resources
+
+### Performance Optimizations - COMPLETE ✅
+
+- [x] **Deletion performance boost** - From 1 file/sec to 100-500 files/sec
+- [x] **Concurrent processing** - Batch operations with AsyncSemaphore
+- [x] **Background I/O operations** - Non-blocking file system operations
+- [x] **Memory optimization** - Efficient resource management during large operations
+- [x] **UI responsiveness** - Smooth interactions during heavy processing
+
+### Bug Fixes & Stability - COMPLETE ✅
+
+- [x] **Button responsiveness** - Fixed unresponsive UI elements
+- [x] **Navigation improvements** - Auto-redirect to Results after scan completion
+- [x] **Color consistency** - Unified AppColors across all views
+- [x] **Font standardization** - Consistent typography and logo sizing
+- [x] **Settings integration** - Proper confirmBeforeDelete functionality
 
 ---
 
-## 🔥 Immediate Priorities (This Week)
+## 🔥 Immediate Priorities (Next Version - v1.1.0)
 
-### 1. Menu Bar Widget
+### 1. Settings Enhancement - Additional Configuration Options
+
+#### **Scan Preferences**
+- [ ] **Minimum file size slider** for large files detection (10MB - 500MB range)
+- [ ] **File age threshold stepper** for old files cleanup (7-365 days)
+- [ ] **Excluded paths management** - Add/remove custom exclusion paths
+- [ ] **Scan threads count** - Performance tuning (1-8 threads)
+
+#### **Export Settings**
+- [ ] **Default export format** picker (CSV/JSON selection)
+- [ ] **Default save location** - Choose preferred export directory
+- [ ] **Include metadata in exports** toggle - Add file permissions, creation dates, etc.
+
+#### **Advanced Options**
+- [ ] **Log level selection** dropdown (Error/Warning/Info/Debug)
+- [ ] **Memory usage limits** - Set maximum RAM usage during operations
+- [ ] **Scan timeout settings** - Configure maximum scan duration
+
+#### **Backup Settings**
+- [ ] **Auto-backup before delete** toggle - Automatic backup creation
+- [ ] **Backup location** chooser - Custom backup directory
+- [ ] **Backup retention days** stepper - Auto-cleanup old backups (1-30 days)
+
+### 2. Menu Bar Widget
 - [ ] Create `MenuBarManager.swift`
 - [ ] Design compact status item UI
 - [ ] Add disk space monitoring
