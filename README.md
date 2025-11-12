@@ -21,7 +21,9 @@
 
 **CleanME** is a powerful, native macOS application designed to safely and transparently clean cache and log files, optimize storage space, and boost system performance—all while maintaining complete system integrity.
 
-[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Usage](#-usage) • [Privacy](#-privacy) • [Roadmap](#-roadmap) • <img src="docs/screenshots/coming-soon-app-store.png" alt="Coming Soon on App Store" height="20"/>
+[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Usage](#-usage) • [Privacy](#-privacy) • [Roadmap](#-roadmap)
+
+<img src="docs/screenshots/coming-soon-app-store.png" alt="Coming Soon on App Store" height="65"/>
 
 ---
 
