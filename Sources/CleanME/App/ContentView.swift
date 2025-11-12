@@ -8,6 +8,7 @@ struct ContentView: View {
     @State private var searchText = ""
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showShortcuts = false
+    @State private var isNavigating = false
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -48,19 +49,23 @@ struct ContentView: View {
                         startRadius: 50,
                         endRadius: 200
                     )
-                    .animation(.easeInOut(duration: 1.0), value: selection)
+                    .animation(.easeInOut(duration: 0.6), value: selection)
                 }
                 .background(.ultraThinMaterial)
             )
-            .animation(.easeInOut(duration: 0.25), value: selection)
+            .animation(.easeInOut(duration: 0.3), value: selection)
         } detail: {
             if let folder = selection {
                 FolderDetailView(folder: folder)
                     .environmentObject(scanEngine)
                     .accentColor(themeManager.current.accentColor)
                     .preferredColorScheme(themeManager.current.colorScheme)
-                    .transition(.opacity.combined(with: .scale))
-                    .animation(.easeInOut(duration: 0.25), value: folder)
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing).combined(with: .opacity),
+                        removal: .move(edge: .leading).combined(with: .opacity)
+                    ))
+                    .animation(.easeInOut(duration: 0.3), value: folder)
+                    .id(folder.rawValue) // Force view refresh
                     .toolbar {
                         ToolbarItem(placement: .navigation) {
                             Button(action: toggleSidebar) {
@@ -200,9 +205,7 @@ struct ContentView: View {
     // MARK: - Modern Navigation Item
     private func modernNavigationItem(folder: Folder) -> some View {
         Button(action: {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
-                selection = folder
-            }
+            navigateToFolder(folder)
         }) {
             HStack(spacing: 12) {
                 ZStack {
@@ -258,6 +261,8 @@ struct ContentView: View {
                             )
                         )
                         .frame(width: 6, height: 6)
+                        .scaleEffect(isNavigating ? 1.2 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isNavigating)
                 }
             }
             .padding(.horizontal, 12)
@@ -295,6 +300,8 @@ struct ContentView: View {
             )
         }
         .buttonStyle(.plain)
+        .disabled(isNavigating) // Prevent multiple taps
+        .opacity(isNavigating && selection != folder ? 0.6 : 1.0)
     }
     
     // MARK: - Modern Sidebar Footer
@@ -336,6 +343,33 @@ struct ContentView: View {
         }
         .padding(.bottom, 12)
     }
+    
+    // MARK: - Navigation Functions
+    private func navigateToFolder(_ folder: Folder) {
+        // Prevent multiple rapid taps
+        guard !isNavigating else { return }
+        
+        // If already selected, don't do anything
+        guard selection != folder else { return }
+        
+        isNavigating = true
+        
+        // Provide immediate haptic feedback
+        FeedbackManager.shared.selection()
+        
+        // Update selection immediately for instant visual feedback
+        selection = folder
+        
+        // Smooth animation for visual elements
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+            // This will trigger UI updates
+        }
+        
+        // Reset navigation flag after a shorter delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            isNavigating = false
+        }
+    }
 }
 
 // MARK: - Search Field
@@ -360,7 +394,6 @@ struct SearchField: View {
         .padding(.horizontal, 8)
         .padding(.vertical, 4)
         .background(Color(nsColor: .controlBackgroundColor))
-        .cornerRadius(6)
     }
 }
 
