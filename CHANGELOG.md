@@ -98,7 +98,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Frontend Integration**: 85% Complete with all major features working
 - **Documentation**: Complete with comprehensive guides and roadmap
 
-### Future Development
-- **v1.1.0**: Additional settings and configuration options
-- **v1.2.0**: Menu bar widget and system integration
-- **v2.0.0**: Advanced features and analytics dashboard
+### Future Development Roadmap
+
+#### **v1.1.0 - Enhanced Settings** (Next Release)
+- **MINOR**: Additional settings and configuration options
+- Scan preferences (file size thresholds, age limits)
+- Export settings (default formats, locations)
+- Advanced options (log levels, memory limits)
+- Backup settings (auto-backup, retention policies)
+
+#### **v1.2.0 - System Integration** 
+- **MINOR**: Menu bar widget and system integration
+- Menu bar status item with quick actions
+- System notifications and alerts
+- Scheduled cleanup automation
+- Finder integration and context menus
+
+#### **v2.0.0 - Major Architecture Upgrade**
+- **MAJOR**: Advanced features and analytics dashboard
+- Complete UI/UX overhaul with new design system
+- Advanced analytics and reporting dashboard
+- Cloud sync and backup capabilities
+- Breaking changes in API and data structures
+
+---
+
+## Semantic Versioning Guidelines
+
+### **Version Format: MAJOR.MINOR.PATCH**
+
+- **MAJOR** (X.0.0): Breaking changes, major architecture updates
+- **MINOR** (1.X.0): New features, backward compatible
+- **PATCH** (1.1.X): Bug fixes, small improvements
+
+### **Pre-Release Versions**
+- **Alpha**: `v1.2.0-alpha.1` - Early development, unstable
+- **Beta**: `v1.2.0-beta.1` - Feature complete, testing phase
+- **RC**: `v1.2.0-rc.1` - Release candidate, final testing
+
+### **Release Process**
+1. Update CHANGELOG.md with new version details
+2. Create and push git tag: `git tag -a vX.Y.Z -m "Release message"`
+3. Create GitHub Release with tag
+4. Build and attach distribution files (.dmg, .zip)
+5. Update version badges in README.md
