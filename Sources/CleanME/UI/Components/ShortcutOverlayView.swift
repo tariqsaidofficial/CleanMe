@@ -2,13 +2,12 @@ import SwiftUI
 
 struct ShortcutOverlayView: View {
     let shortcuts: [(key: String, description: String)] = [
-        ("⌘ N", "Start New Scan"),
+        ("⌘ S", "Start/Stop Scan"),
+        ("⌘ K", "Clean Selected Files"),
         ("⌘ R", "Refresh Results"),
-        ("⌘ D", "Delete Selected"),
-        ("⌘ E", "Export Results"),
         ("⌘ ,", "Open Settings"),
-        ("⌘ A", "Select All"),
-        ("⌘ /", "Show Shortcuts"),
+        ("⌘ /", "Show/Hide Shortcuts"),
+        ("⌘ A", "Select All (Context)"),
         ("⌘ W", "Close Window"),
         ("⌘ Q", "Quit Application")
     ]

@@ -88,13 +88,18 @@ struct ResultsView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .frame(minWidth: 800, idealWidth: 1000, maxWidth: .infinity, minHeight: 600, idealHeight: 800, maxHeight: .infinity)
-        .background(.ultraThinMaterial)
         .navigationTitle("Scan Results")
         .sheet(isPresented: $showingDeletionConfirmation) {
             modernDeletionConfirmationSheet
         }
         .sheet(isPresented: $showingExportSheet) {
-            modernExportSheet
+            exportSheet
+        }
+        .onAppear {
+            setupNotificationListeners()
+        }
+        .onDisappear {
+            removeNotificationListeners()
         }
         .sheet(isPresented: $showSaveSheet) {
             SaveDocumentView(
@@ -1652,6 +1657,67 @@ struct ResultsView: View {
         toastMessage = "Draft discarded"
         toastType = .warning
         showToast()
+    }
+    
+    // MARK: - Notification Handlers
+    
+    private func setupNotificationListeners() {
+        NotificationCenter.default.addObserver(
+            forName: .cleanSelectedShortcut,
+            object: nil,
+            queue: .main
+        ) { _ in
+            handleCleanSelectedShortcut()
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: .refreshResultsShortcut,
+            object: nil,
+            queue: .main
+        ) { _ in
+            handleRefreshResultsShortcut()
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: .selectAllResults,
+            object: nil,
+            queue: .main
+        ) { _ in
+            toggleSelectAll()
+        }
+    }
+    
+    private func removeNotificationListeners() {
+        NotificationCenter.default.removeObserver(self, name: .cleanSelectedShortcut, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .refreshResultsShortcut, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .selectAllResults, object: nil)
+    }
+    
+    private func handleCleanSelectedShortcut() {
+        // If no items selected, select all
+        if selectedItems.isEmpty {
+            selectedItems = Set(filteredResults.map { $0.id })
+        }
+        
+        // Trigger deletion confirmation or direct deletion
+        if appSettings.confirmBeforeDelete {
+            showingDeletionConfirmation = true
+        } else {
+            performDeletion()
+        }
+    }
+    
+    private func handleRefreshResultsShortcut() {
+        // Clear current selection
+        selectedItems.removeAll()
+        
+        // Show toast message
+        toastMessage = "Results refreshed"
+        toastType = .info
+        showToast()
+        
+        // Trigger feedback
+        FeedbackManager.shared.selection()
     }
 }
 

@@ -8,6 +8,9 @@ struct ContentView: View {
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showShortcuts = false
     
+    // Keyboard shortcut states
+    @State private var keyboardShortcutsEnabled = true
+    
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             VStack(spacing: 0) {
@@ -95,14 +98,37 @@ struct ContentView: View {
                 }
         )
         .onAppear {
-            NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-                if event.modifierFlags.contains(.command) && event.charactersIgnoringModifiers == "/" {
-                    showShortcuts.toggle()
-                    return nil
-                }
-                return event
-            }
+            setupKeyboardShortcuts()
+            setupMenuNotifications()
         }
+        .background(
+            // Hidden buttons for keyboard shortcuts
+            VStack {
+                Button("Start Scan Hidden") { handleStartScan() }
+                    .keyboardShortcut("s", modifiers: .command)
+                    .hidden()
+                
+                Button("Clean Selected Hidden") { handleCleanSelected() }
+                    .keyboardShortcut("k", modifiers: .command)
+                    .hidden()
+                
+                Button("Refresh Results Hidden") { handleRefreshResults() }
+                    .keyboardShortcut("r", modifiers: .command)
+                    .hidden()
+                
+                Button("Open Settings Hidden") { handleOpenSettings() }
+                    .keyboardShortcut(",", modifiers: .command)
+                    .hidden()
+                
+                Button("Select All Hidden") { handleSelectAll() }
+                    .keyboardShortcut("a", modifiers: .command)
+                    .hidden()
+                
+                Button("Show Shortcuts Hidden") { showShortcuts.toggle() }
+                    .keyboardShortcut("/", modifiers: .command)
+                    .hidden()
+            }
+        )
     }
     
     
@@ -296,6 +322,163 @@ struct ContentView: View {
         .padding(.bottom, 12)
     }
     
+    // MARK: - Keyboard Shortcuts Handlers
+    
+    private func setupKeyboardShortcuts() {
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+            print("🔍 Key pressed: \(event.charactersIgnoringModifiers ?? "nil"), modifiers: \(event.modifierFlags)")
+            
+            guard event.modifierFlags.contains(.command) else { return event }
+            guard self.keyboardShortcutsEnabled else { 
+                print("❌ Keyboard shortcuts disabled")
+                return event 
+            }
+            
+            guard let chars = event.charactersIgnoringModifiers else { return event }
+            
+            print("✅ Processing command+\(chars)")
+            
+            DispatchQueue.main.async {
+                switch chars {
+                case "s":
+                    print("🚀 Executing Start Scan")
+                    self.handleStartScan()
+                case "k":
+                    print("🧹 Executing Clean Selected")
+                    self.handleCleanSelected()
+                case "r":
+                    print("🔄 Executing Refresh Results")
+                    self.handleRefreshResults()
+                case ",":
+                    print("⚙️ Executing Open Settings")
+                    self.handleOpenSettings()
+                case "/":
+                    print("❓ Toggling Shortcuts")
+                    self.showShortcuts.toggle()
+                case "a":
+                    print("✅ Executing Select All")
+                    self.handleSelectAll()
+                case "w":
+                    print("❌ Executing Close Window")
+                    self.handleCloseWindow()
+                case "q":
+                    print("🚪 Executing Quit App")
+                    self.handleQuitApp()
+                default:
+                    print("❓ Unknown shortcut: \(chars)")
+                }
+            }
+            
+            return nil
+        }
+    }
+    
+    private func setupMenuNotifications() {
+        NotificationCenter.default.addObserver(
+            forName: .showShortcutsMenu,
+            object: nil,
+            queue: .main
+        ) { _ in
+            print("❓ Menu notification received - toggling shortcuts")
+            showShortcuts.toggle()
+        }
+    }
+    
+    private func handleStartScan() {
+        print("🚀🚀🚀 handleStartScan called from hidden button!")
+        guard keyboardShortcutsEnabled else { 
+            print("❌ Shortcuts disabled in handleStartScan")
+            return 
+        }
+        
+        print("📍 Current selection: \(selection?.rawValue ?? "nil")")
+        
+        // Navigate to scan view if not already there
+        if selection != .scan {
+            print("🔄 Navigating to scan view")
+            withAnimation(.easeInOut(duration: 0.3)) {
+                selection = .scan
+            }
+        }
+        
+        // Trigger scan start - we'll need to communicate with ScanView
+        print("📡 Posting startScanShortcut notification")
+        NotificationCenter.default.post(name: .startScanShortcut, object: nil)
+        FeedbackManager.shared.selection()
+        print("✅ handleStartScan completed")
+    }
+    
+    private func handleCleanSelected() {
+        guard keyboardShortcutsEnabled else { return }
+        
+        // Navigate to results view if not already there
+        if selection != .results {
+            withAnimation(.easeInOut(duration: 0.3)) {
+                selection = .results
+            }
+        }
+        
+        // Trigger clean selected - communicate with ResultsView
+        NotificationCenter.default.post(name: .cleanSelectedShortcut, object: nil)
+        FeedbackManager.shared.selection()
+    }
+    
+    private func handleRefreshResults() {
+        guard keyboardShortcutsEnabled else { return }
+        
+        // Navigate to results view if not already there
+        if selection != .results {
+            withAnimation(.easeInOut(duration: 0.3)) {
+                selection = .results
+            }
+        }
+        
+        // Trigger refresh - communicate with ResultsView
+        NotificationCenter.default.post(name: .refreshResultsShortcut, object: nil)
+        FeedbackManager.shared.selection()
+    }
+    
+    private func handleOpenSettings() {
+        guard keyboardShortcutsEnabled else { return }
+        
+        // Navigate to settings view
+        withAnimation(.easeInOut(duration: 0.3)) {
+            selection = .settings
+        }
+        FeedbackManager.shared.selection()
+    }
+    
+    private func handleSelectAll() {
+        guard keyboardShortcutsEnabled else { return }
+        
+        // Send notification based on current view
+        switch selection {
+        case .scan:
+            NotificationCenter.default.post(name: .selectAllScanTypes, object: nil)
+        case .results:
+            NotificationCenter.default.post(name: .selectAllResults, object: nil)
+        default:
+            break
+        }
+        FeedbackManager.shared.selection()
+    }
+    
+    private func handleCloseWindow() {
+        guard keyboardShortcutsEnabled else { return }
+        
+        // Close current window
+        if let window = NSApp.keyWindow {
+            window.performClose(nil)
+        }
+    }
+    
+    private func handleQuitApp() {
+        guard keyboardShortcutsEnabled else { return }
+        
+        // Quit application
+        NSApp.terminate(nil)
+    }
+    
 }
 
 
@@ -351,6 +534,8 @@ enum Folder: String, CaseIterable, Identifiable {
         }
     }
 }
+
+
 
 // MARK: - Preview
 struct ContentView_Previews: PreviewProvider {

@@ -62,6 +62,12 @@ struct ScanView: View {
             }
             previousProgress = newValue
         }
+        .onAppear {
+            setupNotificationListeners()
+        }
+        .onDisappear {
+            removeNotificationListeners()
+        }
     }
     
     // MARK: - Dynamic Background
@@ -622,6 +628,45 @@ struct ScanView: View {
     private func selectNone() {
         selectedScans.removeAll()
         FeedbackManager.shared.selection()
+    }
+    
+    // MARK: - Notification Handlers
+    
+    private func setupNotificationListeners() {
+        NotificationCenter.default.addObserver(
+            forName: .startScanShortcut,
+            object: nil,
+            queue: .main
+        ) { _ in
+            handleStartScanShortcut()
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: .selectAllScanTypes,
+            object: nil,
+            queue: .main
+        ) { _ in
+            selectAll()
+        }
+    }
+    
+    private func removeNotificationListeners() {
+        NotificationCenter.default.removeObserver(self, name: .startScanShortcut, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .selectAllScanTypes, object: nil)
+    }
+    
+    private func handleStartScanShortcut() {
+        // If already scanning, stop the scan
+        if scanEngine.isScanning {
+            scanEngine.stopScan()
+        } else {
+            // If no scans selected, select all
+            if selectedScans.isEmpty {
+                selectedScans = Set(ScanType.allCases)
+            }
+            // Start scan
+            startScan()
+        }
     }
     
     // MARK: - Scan Types Grid (Old)
